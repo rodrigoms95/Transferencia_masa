@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 12}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Sistemas multicomponente}
+
+Para una mezcla binaria con especies \( A \) y \( B \), la velocidad de difusión molar es:
+
+\[ v_{A}^{*} = - \frac{1}{y_A} D_{AB} \frac{ \mathrm d y_A }{ \mathrm d x } \]
+
+\[ v_{B}^{*} = - \frac{1}{y_B} D_{AB} \frac{ \mathrm d y_B }{ \mathrm d x } \]
+
+Si restamos las dos ecuaciones y reordenamos:
+
+\[ v_{B}^{*} - v_{A}^{*} = D_{AB} \left( - \frac{1}{y_B} D_{AB} \frac{ \mathrm d y_B }{ \mathrm d x } + \frac{1}{y_A} D_{AB} \frac{ \mathrm d y_A }{ \mathrm d x } \right) \]
+
+\[ v_{B}^{*} - v_{A}^{*} = D_{AB} \left( - y_A \frac{ \mathrm d y_B }{ \mathrm d x } + y_B \frac{ \mathrm d y_A }{ \mathrm d x } \right) \]
+
+Para simplificar el término entre paréntesis del lado derecho de la ecuación, recordemos que:
+
+\[ y_A + y_B = 1 \]
+
+Por lo que:
+
+\[ \frac{ \mathrm d y_A }{ \mathrm d x } = \frac{ \mathrm d y_B }{ \mathrm d x } = 0 \]
+
+Es decir, que los gradientes de concentración tienen que ser iguales, con signo opuesto. Como hemos mencionado con anterioridad, eso quiere decir que por cada mol de A que se mueve a la derecha, un mol de B se transporta a la izquierda.
+
+Ahora podemos simplificar el término entre paréntesis:
+
+\[ - y_A \frac{ \mathrm d y_B }{ \mathrm d x } + y_B \frac{ \mathrm d y_B }{ \mathrm d x } = y_A \frac{ \mathrm d y_A }{ \mathrm d x } + \left( 1 - y_A \right) \frac{ \mathrm d y_A }{ \mathrm d x } = \frac{ \mathrm d y_A }{ \mathrm d x } \]
+
+Llegamos a la siguiente fórmula que relación el gradiente de concentración con las velocidades molares:
+
+\[ \boxed{ \frac{ \mathrm d y_A }{ \mathrm d x } = \frac{ y_A y_B }{ D_{AB} } \left( v_{B}^{*} - v_{A}^{*} \right) } \]
+
+Para una mezcla con \( n \) componentes, tenemos las \textbf{ecuaciones de Stefan-Maxwell}:
+
+\[ \boxed{ \frac{ \mathrm d y_B }{ \mathrm d x } = \displaystyle \sum_{ A = 1 }^{n} \frac{ y_A y_B }{ D_{BA}^{*} } \left( v_{A}^{*} - v_{B}^{*} \right) , \qquad B = 1, 2, \dots , n } \]
+
+En este caso \( D_{BA}^{*} \) no es la difusividad binaria entre \( A \) y \( B \), sino que será por lo general una difusividad específica para la mezcla en cuestión.
+
+Las ecuaciones de Stefan-Maxwell rara vez son utilizadas. Por lo general dentro de la mezcla hay una especie \( A \) de interés que cumple cualquiera de las dos siguientes características:
+
+\begin{enumerate}
+    \item La especie está diluida, es decir, \( y_A \ll 1 \)
+    \item Todos las demás especies mantienen una relación de fracciones molares constantes entre sí.
+\end{enumerate}
+
+En estos casos, podemos estudiar la mezcla como un \textbf{sistema pseudo-binario}. Por ejemplo, estudiamos la difusión del \( CO \) en el aire como un sistema binario, cuando en realidad el aire es una mezcla de oxígeno, nitrógeno, argón, dióxido de carbono, neón, helio, y muchos componentes más. Sin embargo, el \( CO \) se encuentra diluido, y en la capa inferior de la atmósfera, la tropósfera, las fracciones molares del aire se mantienen constantes. Otro ejemplo sería la difusión de la materia orgánica disuelta, que si bien es una mezcla de muchas especies diferentes la consideramos como una sola, y el agua de mar, que en realidad es una mezcla de agua y de iones de sodio, cloro, magnerio, sulfato, entre muchos otros.
+
+\section{Ecuación de continuidad}
+
+Hemos visto con anterioridad el balance de masa para un sistema con múltiples entradas y salidas. Sin embargo, en un fluido continuo, la conservación de masa se debe cumplir en cada punto del fluido. Debido a esto, necesitamos definir una forma continua en el espacio del balance de masa para una especie.
+
+Definimos ahora un volumen de control correspondiente a un cubo diferencial a través del cual pasará un flujo molar. El volumen del cubo diferencia es:
+
+\[ V = \delta x \delta y \delta z \]
+
+Si hacemos que el flujo molar solo sea en dirección \( y \), tenemos que el área transversal es:
+
+\[ A = \delta y \delta z \]
+
+Anteriormente definimos la ecuación del balance de masa molar con una entrada y una salida como:
+
+\[ \frac{ \partial N_A }{ \partial t } = c_{ A,I } Q_I^* - c_{ A,O } Q_O^* \]
+
+donde es importante notar que el gasto en masa no necesariamente es igual al gasto molar, ya que uno se define con la velocidad en masa y el otro con la velocidad molar. Si ahora consideramos que:
+
+\[ N_A = V c_A, \qquad Q = v^{*} A, \qquad j_A^* = v^* c_A \]
+
+Podemos reescribir el balance de masa para el cubo diferencial como:
+
+\[ V \frac{ \partial c_A }{ \partial t } = A \left( j_{ A \ x }^* - j_{ A \ x + \delta x }^* \right) \]
+
+donde el subíndice de \( j_A^* \) índica en qué cara del cubo diferencial se está evaluando el flujo molar. Ahora sustituimos el área y el volumen y reordenamos:
+
+\[ \delta x \delta y \delta z \frac{ \partial c_A }{ \partial t } = \delta y \delta z \left( j_{ A \ x }^* -  j_{ A \ x + \delta x }^* \right) \]
+
+\[ \frac{ \partial c_A }{ \partial t } = \frac{ \left( j_{ A \ x }^* - j_{ A \ x + \delta x }^* \right) }{ \delta x } \]
+
+El lado derecho de la ecuación corresponde a la definición de la derivada cuando \( \delta x \) tiende a cero:
+
+\[ \frac{ \partial f }{ \partial x } = \lim\limits_{ \delta x \to 0 } \frac{ \left( j_{ A \ x }^* -  j_{ A \ x + \delta x }^* \right) }{ \delta x } \]
+
+por lo que podemos reescribir la ecuación como:
+
+\[ \boxed{ \frac{ \partial c_A }{ \partial t } + \frac{ \partial j_A^* }{ \partial x } = 0 } \]
+
+Esto se conoce como la \textbf{ecuación de continuidad para una especie química}. Nos dice que el flujo que entra en el volumen de control debe ser igual al cambio de la concentración en el tiempo dentro del volumen de control.
+
+\section{Ecuación de transporte}
+
+Anteriormente definimos el flujo molar para un medio en movimiento como:
+
+\[ j_A^* = c_A v^* - D_{AB} \frac{ \mathrm d C_A }{ \mathrm d x } \]
+
+donde el primer término de la derecha corresponde a la advección y el segundo a la difusión.
+
+Sustituimos este flujo molar en la ecuación de continuidad:
+
+\[ \frac{ \partial c_A }{ \partial t } + \frac{ \partial c_A v^* }{ \partial x } = \frac{ \partial }{ \partial x } \left( D_{AB} \frac{ \partial c_A }{ \partial x } \right) \]
+
+Para simplificar el segundo término de la izquierda, recordamos la ley de la cadena:
+
+\[ \frac{ \partial }{ \partial x } \left( c_A v^* \right) = v^* \frac{ \partial c_A }{ \partial x } + c_A \frac{ \partial v^* }{ \partial x } \]
+
+Sí la especie de interés está diluida, entonces la velocidad molar es aproximadamente igual a la velocidad en masa:
+
+\[ y_A \ll 1 \longrightarrow v^* \approx v \]
+
+Además, si el fluido es incompresible, como el agua o el aire a bajas velocidades y en condiciones normales de temperatura y presión, entonces
+
+\[ \frac{ \partial v }{ \partial x } = 0 \]
+
+y entonces el segundo término de la izquierda se simplifica a:
+
+\[ \frac{ \partial }{ \partial x } \left( c_A v^* \right) \approx v \frac{ \partial c_A }{ \partial x } \]
+
+Si recordamos que por lo general la difusividad es constante y homogénea cuando la temperatura y la presión también lo son, entonces llegamos a:
+
+\[ \boxed{ \frac{ \partial c_A }{ \partial t } + v \frac{ \partial c_A }{ \partial x } = D_{AB} \frac{ \partial ^2 }{ \partial x^2 } c_A } \]
+
+que se conoce como la \textbf{ecuación de transporte para sustancias conservativas}. El primer término de la izquierda, la derivada temporal, se conoce como término de acumulación; el segundo, el producto de la velocidad y la derivada espacial, como el término de advección; y la segunda derivada espacial en la derecha de la ecuación es el término de difusión. El término de advección nos dice que la velocidad transportará, o trasladará, al gradiente de concentración, como se puede ver en las siguientes imágenes.
+
+Siguiente un proceso similar, la ecuación de continuidad en tres dimensiones es:
+
+\[ \boxed{ \frac{ \partial c_A }{ \partial t } + \nabla \cdot \overrightarrow{ j_A^* } = 0 } \]
+
+donde \( c_A \) es una función escalar, mientras que \( \overrightarrow{ j_A^* } \) es una función vectorial. Por otro lado, la ecuación de transporte se escribe como:
+
+\[ \boxed{ \frac{ \partial c_A }{ \partial t } + \overrightarrow v \cdot \frac{ \partial c_A }{ \partial x } = D_{AB} \frac{ \partial ^2 c_A }{ \partial x^2 } } \]
+
+donde el operador vectorial nabla, \( \nabla \), aplicado a una función escalar, se conoce como el gradiente y se expande como:
+
+\[ \nabla \varphi = \frac{ \partial \varphi }{ \partial x } \hat i + \frac{ \partial \varphi }{ \partial y } \hat j + \frac{ \partial \varphi }{ \partial z } \hat k \]
+
+Aplicado a una función vectorial, se conoce como la divergencia:
+
+\[ \nabla \overrightarrow \Phi = \frac{ \partial \overrightarrow \Phi }{ \partial x } + \frac{ \partial \overrightarrow \Phi }{ \partial y } + \frac{ \partial \overrightarrow \Phi }{ \partial z } \]
+
+y si se aplica dos veces a una función escalar, tendremos el laplaciano o el operador de Laplace:
+
+\[ \nabla ^2 \varphi = \frac{ \partial ^2 \varphi }{ \partial ^2 x } + \frac{ \partial ^2 \varphi }{ \partial ^2 y } + \frac{ \partial ^2 \varphi }{ \partial ^2 z } \]
+
+De esta manera, si expandimos la ecuación de transporte tendremos:
+
+\[ \frac{ \partial c_A }{ \partial t } + v_x \frac{ \partial c_A }{ \partial x } + v_y \frac{ \partial c_A }{ \partial y } + v_z \frac{ \partial c_A }{ \partial z } = D_{AB} \left( \frac{ \partial ^2 c_A }{ \partial ^2 x } + \frac{ \partial ^2 c_A }{ \partial ^2 y } + \frac{ \partial ^2 c_A }{ \partial ^2 z } \right) \]
+
+Estas ecuaciones se resuelven con métodos y condiciones iniciales para ecuaciones diferenciales parciales, o mediante métodos numéricos. Más adelante estudiaremos algunas soluciones sencillas.
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
