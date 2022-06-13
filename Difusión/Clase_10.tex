@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{wasysym}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 12}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Tubo de Stefan}
+
+Por lo general, es necesario medir el valor de la difusividad experimentalmente. En el caso de liquidos que se evaporan, para medir su difusividad en fase gas con respecto al aire, se utiliza el \textbf{Tubo de Stefan}.
+
+Como el flujo arriba del tubo es lo suficientemente rápido, todo el gas A se lava, no hay acumulación y \( y_{AL} = cte \). \( y_{A0} \) depende del equilibrio entre la fase líquido-gas. Además asumimos que \( B \) es insoluble en \( A_{ \left( l \right) } \).
+
+Como \( B \) tiene una frontera inferior en la superficie del líquido, no hay movimiento neto de \( B \) y, dentro del tubo, éste se encuentra estancado. \( A \) migrará hacia arriba del tubo, por lo que se encuentra en movimiento. Esto quiere decir que en conjunto, la mezcla está en movimiento hacia arriba. Sin embargo, toda la mezcla parece estar estancada. En realidad, solo \( B \) lo está, pero como es el componente princicpal da esa apariencia a todo el sistema.
+
+Debido al movimiento de la mezcla, tenemos que considerar advección y difusión:
+
+\[ j_A^* = y_A \left( j_A^* + j_B^* \right) - c_T D_{AB} \frac{ \mathrm d y_A }{ \mathrm d x } \]
+
+pero como \( B \) está estancado:
+
+\[ j_B^* = 0 \]
+
+lo que nos lleva a:
+
+\[ j_A^* = y_A j_A^* - c_T D_{AB} \frac{ \mathrm d y_A }{ \mathrm d x } \]
+
+Despejamos \( j_A^* \):
+
+\[ j_A^* = - \frac{ c_T D_{AB} }{ 1 - y_A } \frac{ \mathrm d y_A }{ \mathrm d x } \]
+
+Integramos la ecuación:
+
+\[ \int_0^L j_A^* \mathrm dx = \int_{y_{A0}}^{y_{AL}} - \frac{ c_T D_{AB} }{ 1 - y_A } \mathrm d y_A \]
+
+Como solo hay flujo en la dirección \( x \), \( j_A^* \) es constante por el principio de conservación de masa.
+
+\[ j_A^* \int_0^L \mathrm d x = - c_T D_{AB}  \int_{y_{A0}}^{y_{AL}} \frac{ \mathrm d y_A }{ 1 - y_A } \]
+
+Legamos a la \textbf{Ley de Stefan}.
+
+\[ \boxed{ j_A^* = \frac{ c_T D_{AB} }{ L } \ln \left( \frac{ 1 - y_{AL} }{ 1 - y_{A0} } \right) } \]
+
+donde utilizamos la propiedad de los logaritmos:
+
+\[ \ln A - \ln B = \ln \left( \frac{A}{B} \right) \]
+
+En el caso de un gas ideal, tenemos las siguientes relaciones entre la presión y la fracción molar y la concentración total:
+
+\[ y_A = \frac{P_A}{P}, \qquad c_T = \frac{P}{RT} \]
+
+lo que nos lleva a la \textbf{Ley de Stefan para gases ideales}.
+
+\[ \boxed{ {\dot N}_A = \frac{ A P D_{AB} }{ L R T } \ln \left( \frac{ P - P_{AL} }{ P - y_{A0} } \right) } \]
+
+En el tubo de Stefan tenemos un \textbf{flujo por advección inducida} que mejora la difusión. Conforme \( A \) se evapora, \( L \) aumenta en el tiempo. Esto nos daría un sistema no estacionario, sin embargo:
+
+\[ \frac{ \mathrm d L }{ \mathrm d t } \ll v_A \]
+
+Debido a esto, podemos asumir un \textbf{estado pseudo-estacionario}:
+
+\[ \frac{ \mathrm d L }{ \mathrm d t } \approx 0 \]
+
+\subsection{Ejercicio}
+
+Se usa un tubo de Stefan circular, de \( 3 \) cm de diámetro en una ciudad ubicada a \( 1,600 \) msnm, donde la presión es de \( 83.5 \times 10^3 \) Pa y se tiene una temperatura de \( 20\deg\) C. La distancia de la superficie del agua al extremo del tubo es de \( 40 \) cm. En \( 15 \) días se han evaporado \( 1.23 \) g de agua. El aire que fluye sobre el tubo está totalmente seco. ¿ Cuál es el coeficiente de difusión del vapor de agua en el aire?
+
+Tenemos los siguientes datos:
+
+\[ \diameter = 0.03 \left[ \text{m} \right] \]
+
+\[ L = 0.4 \left[ \text{m} \right] \]
+
+\[ {\dot m}_A = 8.2 \times 10^{-2} \left[ \sfrac{\text{g}}{\text{día}} \right] \]
+
+\[ M_A = 18 \left[ \sfrac{\text{g}}{\text{mol}} \right] \]
+
+Utilizando la aproximación de August para la presión de saturación del vapor de agua:
+
+\[ P_{A0} = P_{vsat} = 133.3224 \exp \left( 20.386 - \frac{5,132}{20 + 273.15} \right) \]
+
+\[ P_{A0} = 2,374.1 \left[ \text{Pa} \right] \]
+
+Convertimos la presión parcial a fracción molar:
+
+\[ y_{A0} = \frac{P_{A0}}{P} = \frac{2,374.1}{83.5 \times 10^5} = 2.84 \times 10^{-2} \]
+
+Como el aire que fluye sobre el tubo está completamente seco:
+
+\[ y_{AL} = 0 \]
+
+Calculamos la concentración total, el área del tubo, y el flujo molar
+
+\[ c_T = \frac{P}{RT} = \frac{2,374.1}{ 8.314 + \left( 20 + 273.15 \right) } = 34.15 \left[ \sfrac{\text{mol}}{\text{m}^3} \right] \]
+
+\[ A = \frac{ \pi \diameter ^2 }{ 4 } = \frac{ \pi \left( 0.03 \right) ^2 }{ 4 } = 7.069 \times 10^{-4} \left[ \text{m} ^2 \right] \]
+
+\[ {\dot N}_A = \frac{{\dot m}_A}{M_a} = \frac{8.2 \times 10^2}{18} \left( \frac{1 \ \text{día}}{24 \cdot 3,600 \ \text{s}} \right) = 5.27 \times 10^{-8} \left[ \sfrac{\text{mol}}{\text{s}} \right] \]
+
+Despejamos la difusividad de la ley de Stefan:
+
+\[ {\dot N}_A = \frac{ A c_T D_{AB} }{ L } \ln \left( \frac{ 1 - y_{AL} }{ 1 - y_{A0} } \right) \]
+
+\[D_{AB} = \frac{ {\dot N}_A L }{ A c_T \ln \left( \frac{ 1 - y_{AL} }{ 1 - y_{A0} } \right) } = \frac{ 5.27 \times 10^{-8} \cdot 0.4 }{ 7.069 \times 10^{-4} \cdot 34.15 \ln \left( \frac{ 1 - 0 }{ 1 - 2.84 \times 10^{-2} } \right) } \]
+
+y llegamos al valor buscado de la difusividad:
+
+\[ \boxed{ 3.03 \times 10^{-5} \left[ \sfrac{\text{m}^2}{\text{s}} \right] } \]
+
+\section{Contradifusión equimolar}
+
+En este caso, tenemos dos recipientes conectados por una tubería angosta y larga. Cada recipiente tiene una mezcla de \( A + B \), aunque las fracciones molares son diferentes.
+
+Sin embargo, como ambos recipientes están conectados y se ecuentran a la misma presión, para gases ideales tenemos que:
+
+\[ c_T = \frac{P}{RT} = cte, \qquad c_T = c_A + c_B = cte \]
+
+Esto nos indica que por cada molécula de A, que se mueve a la derecha, una molécula de B se moverá a la izquierda.
+
+\[ {\dot N}_A = -{\dot N}_B \quad \longrightarrow \quad j_A^* = -j_B^* \]
+
+y entonces el flujo de avdección y la velocidad molar son iguales a cero:
+
+\[ c_A v^* = y \left( j_A^* + j_B^* \right) = 0 \quad \longrightarrow v^* = 0 \]
+
+La mezcla está en reposo en el análisis molar y solo hay flujo por difusión:
+
+\[ j_A^* = j_{A \ dif}^* = -c_T D_{AB} \frac{ \mathrm d y_A }{ \mathrm d x } \]
+
+y utilizando la presión parcial llegamos a:
+
+\[ \boxed{ {\dot N}_A = \frac{A D_{AB}}{RT} \frac{ \left( P_{A0} - P_{AL} \right) }{ L } } \]
+
+Sin embargo, si convertimos a una base másica, nos daremos cuenta que la mezcla no está en reposo, por lo que un anemómetro podría detectar una velocidad entre ambos recipientes.
+
+\[ \dot m = {\dot m}_A + {\dot m }_B = {\dot N}_A M_A + {\dot N}_B M_B = {\dot N}_A \left( M_A - M_B \right) \neq 0 \]
+
+\[ Q \rho = \dot m \quad \longrightarrow \quad vA \rho = \dot m \quad \longrightarrow \quad v = \frac{ \dot m }{ A \rho } \neq 0 \]
+
+En este caso, es conveniente hacer todos los cálculos en la base molar, para evitar tener que trabajar con el término de advección.
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
