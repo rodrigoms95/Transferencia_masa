@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 25: Reactores acoplados}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Reactores en serie}
+
+Tenemos un sistema con dos reactores conectados entre sí, como se ve en la figura.
+
+Consideramos que tenemos un sistema en estado estacionario y hacemos un balance de masa en cada reactor de la especie de interés:
+
+\[ \begin{aligned}
+    1 & : \quad Q \chi_I = Q \chi_1 + k V_1 \chi_1 \\
+    2 & : \quad Q \chi_1 = Q \chi_2 + k V_2 \chi_O 
+\end{aligned} \]
+
+Reordenamos y despejamos la concentración de salida, utilizando la definición del tiempo de retención:
+
+\[ \chi_I = \chi_1 + k \theta_1 \chi_1 \]
+
+\[ \chi_1 = \frac{ \chi_I }{ 1 + k \theta_1 } \]
+
+\[ \chi_O = \frac{ \chi_1 }{ 1 + k \theta_2 } \]
+
+y llegamos a la ecuación de la concentración para dos estanques acoplados:
+
+\[ \boxed{ \chi_O = \chi_I \left( 1 + k \theta_1 \right) ^ {-1} \left( 1 + k \theta_2 \right) ^ {-1} } \]
+
+Si los dos tiempos de retención son iguales:
+
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ \left( 1 + k \theta \right) ^ 2 } } \]
+
+Si repetimos el proceso podemos llegar al caso general para \( n \) reactores conectados en serie.
+
+Con \( \theta_i \) diferentes:
+
+\[ \boxed{ \chi_O = \chi_I \displaystyle\prod_{i}^{n} \left( 1 + k \theta_i \right) ^ {-1} } \]
+
+Con el mismo tiempo de retención en todos los estanques:
+
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ \left( 1 + k \theta \right) ^ n } } \]
+
+La eficiencia de tratamiento será:
+
+\[ \eta = 1 - \frac{ \chi_O }{ \chi_I } \]
+
+\[ \boxed{ \begin{aligned}
+    \eta & = 1 - \prod \left( 1 + k \theta_i \right) ^ {-1} \\
+    \eta & = 1 - \left( 1 + k \theta \right) ^ {-n}
+\end{aligned} } \]
+
+Comparemos ahora la eficiencia de tratamiento de un reactor con tiempo de retención \( 2 \theta \) contra dos reactores en serie, cada uno con tiempo de retención \( \theta \): 
+
+\[ \eta_A = 1 - \frac{1}{ 1 + 2 k \theta } \]
+
+\[ \eta_B = 1 - \frac{1}{ \left( 1 + k \theta \right) ^ 2 } = 1 - \frac{1}{ 1 + 2 k \theta + k ^ 2 \theta ^ 2 } \]
+
+Vemos que:
+
+\[ \eta_B > \eta_A \]
+
+ya que:
+
+\[ 1 - \frac{1}{ \left( 1 + k \theta \right) ^ 2 } = 1 - \frac{1}{ 1 + 2 k \theta + k ^ 2 \theta ^ 2 } > 1 - \frac{1}{ 1 + 2 k \theta } \]
+
+\[ 1 + 2 k \theta < 1 + 2 k \theta + k ^ 2 \theta ^ 2 \]
+
+\[ 0 < k ^ 2 \theta ^ 2 \]
+
+Hemos llegado a la conclusón que es más eficiente tener reactores en serie, que uno solo del mismo volumen.
+
+\section{Reactores acoplados con recirculación}
+
+En ocasiones, los reactores pueden tener recirculación, lo que permite regresar microorganismos que se encuentran en una etapa de crecimiento óptimo a donde la concentración es mayor, y así mantener un régimen microbiológico ideal.
+
+\begin{itemize}
+    \item \textbf{fr}: factor de recirculación, \( 0 \geq fr < 1 \)
+\end{itemize}
+
+En este caso el balance de masa es: 
+
+\[ \begin{aligned}
+    1 & : \ Q \chi_I + fr Q \chi_O = Q \left( fr + 1 \right) \chi_1 + k V_1 \chi_1 \\
+    2 & : \ Q \left( fr + 1 \right) \chi_1 = fr Q \chi_O + k V_2 \chi_O
+\end{aligned} \]
+
+Reordenamos el sistema de ecuaciones de dos incógnitas utilizando la definición del tiempo de retención:
+
+\[ \boxed{ \begin{aligned}
+    1 & : \ \left( fr + 1 + k \theta_1 \right) \chi_1 - fr \chi_O = \chi_I \\
+    2 & : \ \left( -fr - 1 \right) \chi_1 + \left( fr + 1 + \theta_2 k \right) \chi_O = 0
+\end{aligned} } \]
+
+El sistema lineal se puede resolver por varios métodos, como la eliminación de Gauss.
+
+Para \( n \) reactores tenemos el siguiente balance de masa:
+
+\[ \begin{aligned}
+    1 & : \ \chi_I + fr_1 \chi_2 = \left( fr_1+ 1 + k \theta_1 \right) \chi_1 \\
+    2 & : \ \left( fr_1 + 1 \right) \chi_1 + fr_2 \chi_3 = \left( fr_1 + fr_2 + 1 + k \theta_2 \right) \chi_2 \\
+    3 & : \ \left( fr_2 + 1 \right) \chi_2 + fr_3 \chi_4 = \left( fr_2 + fr_3 + 1 + k \theta_3 \right) \chi_3 \\
+    \vdots & \\
+    n & : \ \left( fr_{ n - 1 } + 1 \right) \chi_{ n - 1 } = \left( fr_{ n - 1 } + 1 + k \theta_n \right) \chi_n \\
+\end{aligned} \]
+
+Y el sistema de ecuaciones queda como:
+
+\[ \boxed{ \begin{aligned}
+    1 & : \ \left( fr_1 + 1 + k \theta_1 \right) \chi_1 - fr_2 \chi_2 = \chi_I \\
+    i & : \ \left( -fr_{ i - 1 } - 1 \right) \chi_{ i - 1 } + \left( fr_{ i - 1 } + fr_i + 1 + \theta_i k \right) \chi_i = 0, \quad 2 < i < n \\
+    n & : \ \left( -fr_{ n - 1 } - 1 \right) \chi_{ n - 1 } + \left( fr_{ n - 1 } + 1 + \theta_n k \right) \chi_n = 0
+\end{aligned} } \]
+
+\section{Reactores en paralelo}
+
+El balance de masa en cada reactor es:
+
+\[ \chi_1 = \frac{ \chi_I }{ 1 + k V_1 Q_{1}^{-1} } \]
+
+\[ \chi_2 = \frac{ \chi_I }{ 1 + k V_2 Q_{2}^{-1} } \]
+
+En el punto de mezclado también hacemos un balance de masa:
+
+\[ \chi_O = \frac{ \chi_1 Q_1 + \chi_2 Q_2 }{ Q_1 + Q_2 } \]
+
+Unimos las tres ecuaciones:
+
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ Q_1 + Q_2 } \left( \frac{ Q_1 } { 1 + k V_1 Q_{1}^{-1} } + \frac{ Q_2 } { 1 + k V_2 Q_{2}^{-1} } \right) } \]
+
+Cuando \( Q_1 = Q_2 \) y \( V_1 = V_2 \)
+
+\[ \chi_1 = \chi_2 \]
+
+\[ \chi_O = \chi_1 \]
+
+Si tenemos \( n \) reactores:
+
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ \sum Q_i } \left( \displaystyle\sum \frac{ Q_i }{ 1 + k + V_i Q_{i}^{-1} } \right) } \]
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
