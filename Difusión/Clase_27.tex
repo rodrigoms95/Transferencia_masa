@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 27: \\ Reactores de flujo pistón}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción al flujo pistón}
+
+Un reactor de flujo pistón es aquél donde hay dos dimensiones cortas \( \left( x , y \right) \) y una larga, a lo largo de la cual corre el flujo, por lo que:
+
+\[ v_y , \ v_z = 0 \]
+
+Además, el fluido está bien mezclado en las dimensiones cortas:
+
+\[ \frac{ \partial \chi }{ \partial y } , \ \frac{ \partial \chi }{ \partial z } = 0 \]
+
+es decir, no hay transporte de ningún tipo en estas dos direcciones. En cambio, en el eje \( x \), tanto la velocidad como el gradiente de concentración transportarán a la especie de interés.
+
+En el flujo pistón interviene la advección, la difusión, y en muchas ocasiones, la dispersión laminar y turbulenta. Sin embargo, el fenómeno dominante suele ser la advección, ya que de acuerdo con la magnitud de la velocidad, esta forma de transporte llega a ser mucho mayor que la difusión.
+
+\[ D \frac{ \partial ^ 2 \chi }{ \partial x } \ll v \frac{ \partial \chi }{ \partial x } \]
+
+Como la especie se \textit{"empuja"} a lo largo de un \textit{"cilindro"} estrecho, el fenómeno es análogo al de un pistón.
+
+El flujo pistón se puede utilizar para estudiar transporte en tuberías, canales, e incluso en ríos, con las consideraciones pertinentes. Los reactores en los trenes de tratamiento en una planta de tratamiento de aguas residuales suelen ser canales.
+
+Anteriormente vimos que en un sistema sin difusión y con una sustancia no conservativa, la ecucación de transporte es:
+
+\[ x = \frac{ -v }{ k } \ln \left( \frac{ \chi }{ \chi_I } \right) \]
+
+Despejamos \( \chi \):
+
+\[ \boxed{ \chi = \chi_I e ^ { - k t_r } } \]
+
+\[ t_r = \frac{x}{v} \]
+
+\begin{itemize}
+    \item \( t_r \): tiempo de recorrido; tiempo que tarda el fluido en recorrer cierta distancia. Cuando consideramos toda la longitud del reactor es equivalente al tiempo de retención \( \theta \).
+\end{itemize}
+
+\[ t_r = \frac{A}{A} \frac{x}{v} = \frac{V}{Q} = \theta \]
+
+La eficiencia de tratamiento es 
+
+\[ \boxed{ \eta_p = 1 - \frac{ \chi_O }{ \chi_I } = 1 - e ^{ -k \theta } } \]
+
+Comparemos este resultado contra la eficiencia de un sistema bien mezclado:
+
+\[ \eta_M = 1 - \frac{ 1 }{ 1 + k \theta } \]
+
+\[ \frac{ \chi_{ O \ M } }{ \chi_{ O \ P } } = \frac{ \frac{ \chi_I }{ 1 + k \theta } }{ \chi_I e ^ { -k \theta } } = \frac{ e ^{ k \theta } }{ 1 + k \theta } > 1 \]
+
+La última desigualdad es cierta debido a la expansión en serie de Taylor de la exponencial:
+
+\[ e ^ { k \theta } \approx 1 + k \theta + \frac{ \left( k \theta \right) ^ 2 }{2} + \hdots \]
+
+La concentración de salida de un sistema bien mezclado siempre será mayor que la de un flujo pistón con el mismo tiempo de retención, por lo que un reactor de flujo pistón es más eficiente.
+
+Si tenemos dos sistemas bien mezclados en serie:
+
+\[ \frac{ \chi_{ O \ M } }{ \chi_{ O \ P } }= \frac{ e ^{ k \theta } }{ \left( 1 + k \theta \right) ^ 2 } \approx \frac{ 1 + 2 k \theta + 2 k^2 \theta^2 + \hdots }{ 1 + 2 k \theta + k^2 \theta^2 + \hdots } > 1 \]
+
+por lo que el flujo pistón sigue siendo más eficiente que dos sistemas bien mezclados en serie.
+
+\section{Flujo transitorio con velocidad constante}
+
+Vamos a realizar una transformación de coordenadas entre un marco de referencia euleriano (fijo) y uno lagrangiano (siguiendo el movimiento de las partículas del fluido). El marco de referencia lagrangiano se mueve a la velocidad del fluido.
+
+Ahora suponemos que no hay difusión. Si en el tiempo cero la concentración tiene una cierta forma funcional \( \chi_{ t = 0 } = \mathrm f \left( x \right) \) a lo largo del reactor, conforme pase el tiempo la función se va a advectar de acuerdo con la velocidad, es decir, se va a recorrer sin cambiar su forma.
+
+\[ \chi_t = \mathrm f \left( x - v t \right) = \mathrm f \left( x' \right) \]
+
+donde aplicamos la transformación de coordenadas
+
+\[ \boxed{ x' = x -vt , \qquad t' = t } \]
+
+Si aplicamos esta transformación de coordenadas a las derivadas parciales, por regla de la cadena:
+
+\[ \frac{ \partial \chi }{ \partial x } = \frac{ \partial \chi }{ \partial x' } \frac{ \partial x' }{ \partial x } + \frac{ \partial \chi }{ \partial t' } \frac{ \partial t }{ \partial x } = \frac{ \partial \chi }{ \partial x' } \]
+
+\[ \frac{ \partial \chi }{ \partial t } = \frac{ \partial \chi }{ \partial t' } \frac{ \partial t' }{ \partial t } + \frac{ \partial \chi }{ \partial x' } \frac{ \partial x' }{ \partial t } = \frac{ \partial \chi }{ \partial t' } - v \frac{ \partial \chi }{ \partial x' } \]
+
+por lo que:
+
+\[ \frac{ \partial \chi }{ \partial t' } = \frac{ \partial \chi }{ \partial t } + v \frac{ \partial \chi }{ \partial x } \]
+
+En los anteriores desarrollamos utilizamos las siguientes relaciones: \( \sfrac{ \partial x' }{ \partial x } = 1 \), \( \sfrac{ \partial t' }{ \partial x } = 0 \), y \( \sfrac{ \partial t' }{ \partial t } = 1 \), que se pueden obtener calculando las derivadas de las transformaciones de coordenadas.
+
+En una sustancia reactiva, la función se advecta y se \textit{"aplasta"} con el tiempo.
+
+La forma diferencial de la ecuación de transporte en el caso estacionario es:
+
+\[ \frac{ \mathrm d \chi }{ \mathrm x } = -k \frac{\chi}{v} \]
+
+y en el caso transitorio:
+
+\[ \frac{ \partial \chi }{ \partial t } + v \frac{ \partial \chi }{ \partial x } = -k \chi \]
+
+La ecuación transitoria en la nuevas coordenadas se convierte en:
+
+\[ \frac{ \partial \chi }{ \partial t' } = -k \chi \]
+
+Llegamos a esta forma utilizando las sustituciones obtenidas con la regla de la cadena. Esta ecuación tiene una forma análoga a la ecuación estacionaria y se puede resolver de la misma manera.
+
+\[ \chi \left( x', t' \right) = \mathrm f \left( x' \right) e ^ { -k t' } \]
+
+En el nuevo sistema de coordenadas, la ecuación de transporte en un flujo pistón transitorio es muy similar al sistema estacionario, salvo que ahora tenemos el tiempo transcurrido en vez del tiempo de recorrido. Si regresamos a las coordenadas originales, llegamos a:
+
+\[ \boxed{ \chi \left( x, t \right) = \mathrm f \left( x - v t \right) e ^ { -k t } } \]
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
