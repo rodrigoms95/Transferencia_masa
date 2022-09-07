@@ -28,7 +28,7 @@
 
 \renewcommand{\theenumiii}{\roman{enumiii}}
 
-\title{Clase 23: \\ Reactores bien mezclados}
+\title{Clase 25: \\ Ejercicios de Reactores bien mezclados}
 \author{Rodrigo Muñoz}
 \date{2022}
 
@@ -38,133 +38,130 @@
 
 \maketitle
 
-\section{Operaciones y procesos unitarios}
+\section{Ejercicio 1}
 
-Las \textbf{operaciones y procesos unitarios} son sistemas ingenieriles que realizn una transformación en el fluido a tratar, que generalmente es agua, pero también podría ser aire. El objetivo del tratamiento es disminuir la carga de contaminantes, los cuales son determinados de acuerdo con el uso en particular que se le quiere dar al agua, como descargarlo a un cuerpo de agua natural, reutilizarla donde no haya contacto con las personas, o incluso potabilizarla.
+Una ciudad tiene una descarga de aguas residuales de \( 5 \sfrac{\text{m}^3}{\text{s}} \) con una \( DBO_5 \) de \( 300 \sfrac{\text{mg}}{l} \) y una constante de degradación de \( 0.15 \text{día}^{-1} \). Diseña un reactor bien mezclado que permita tratar el agua a \( 100 \left[ 100 \sfrac{\text{mg}}{l} \right] \).
 
-Las \textbf{operaciones} se refieren a transformaciones físicas, como la sedimentación, mientras que los \textbf{procesos} se tratan de transformaciones biológicas y química, como un reactor de lodos activaodos.
+\bigskip \bigskip
 
-Un \textbf{reactor} es el elemento físico donde se lleva a cabo el proceso u operación unitaria. Un \textbf{tren o sistema de tratamiento} es un conjunto de reactores, cuyas entradas y salidas están conectadas entre sí de diversas maneras, que logran la disminución buscada de los contaminantes.
+Datos del problema:
 
-En los siguientes capítulos, estudiaremos los tipos básicos de reactores y como se pueden conectar e interactuar entre sí.
+\[ \chi_I = 300 \left[ \sfrac{\text{mg}}{l} \right] \]
 
-\section{Sistema bien mezclado}
+\[ \chi_O = 100 \left[ \sfrac{\text{mg}}{l} \right] \]
 
-Un sistema bien mezclado tiene las siguientes características:
+\[ Q = 300 \left[ \sfrac{\text{m}^3}{\text{s}} \right] = 5 \cdot 3600 \cdot 24 = 432,000 \left[ \sfrac{\text{m}^3}{\text{día}} \right] \]
 
-\begin{itemize}
-    \item La concentración de las especies es homogénea espacialmente
-    \item Dentro del sistema no hay transporte por difusión o advección de zonas aisladas de mayor concentración.
-    \item La concentración en la salida es la concentración del sistema.
-    \item El volumen de conttrol suele ser fíjo.
-\end{itemize}
+\[ k = 0.15 \left[ \text{día}^{-1} \right] \]
 
-Las ecuaciones para describir a los sistemas bien mezclados son las mismas que las desarrolladas para el balance de masa estacionario con diferentes casos de entradas y salidas.
+Calculamos la eficiencia:
 
-\subsection{Sistema frasco o por lotes (\textit{batch})}
+\[ \eta = 1 - \frac{\chi_O}{\chi_I} = 1 - \frac{100}{300} = 0.667 \]
 
-Características:
+Volumen necesario para lograr la eficiencia:
 
-\begin{itemize}
-    \item No hay entradas ni salidas durante la transformación.
-    \item El líquido se coloca en un tanque, donde se realiza toda la transformación, y posteriormente se retira.
-\end{itemize}
+\[ V = \frac{Q}{k} \left( \frac{\eta}{ 1 - \eta } \right) \]
 
-Ecuaciones de balance de masa o de concentración:
+\[ V = \frac{432,000}{0.15} \left( \frac{\eta}{ 1 - \eta } \right) \]
 
-\[ \chi = \chi_0 e^{-kt} \]
+Si el reactor debe tener una profundia de \( 2 \text{m} \), ¿cuántas hectáreas se requieren de terreno?
 
-\[ \lim_{ t \rightarrow \infty } \chi = 0 \]
+\[ z = 2 \left[ \text{m} \right] \]
 
-\subsection{Estanque de retención}
+\[ A = \frac{V}{z} = \frac{5.77 \times 10^6}{2} = 2.89 \times 10^6 \left[ \text{m}^2 \right] \]
 
-Características:
+Este tipo de sistemas de tratamiento se llaman estanques facultativos, donde se tiene un reactor bien mezclado, con poca profundidad y sin aireación. En realidad el sistema no tiene concentraciones homogéneas, ya que no hay ningún dispositivo de mezclado mecánico, y la sedimentación genera un gradiente vertical de concentración. Como la capa superior está en contacto con el aire, hay un suministro constante de oxígeno, mientras que hacia el fondo solo hay consume de éste por parte de los microorganismos. Esto genera un gradiente de concentración de oxígeno y hace que haya un régimen aerobio en la parte superior del estanque y uno anaerobio en la parte inferior.
 
-\begin{itemize}
-    \item La entrada y salida son constantes
-    \item Por lo general, hay solo una entrada y una salida.
-\end{itemize}
+\section{Ejercicio 2}
 
-Ecuaciones:
+En un frasco se coloca una muestra de aguas residuales que resultan con una \( DBO_5 \) de \( 200 \sfrac{\text{mg}}{l} \). Si suponemos que la constante de degradación es de \( 0.2 \text{día}^{-1} \), ¿cuál será la \( DBO_{10} \), \( DBO_{20} \), y la \( DBO_{\text{última}} \)?
 
-\[ \chi = \chi_0 e^{ - \left( \theta^{-1} \right) t } + \frac{\chi_I}{ 1 + k \theta } \left[ 1 - e^{  - \left( \theta^{-1} \right) t } \right] \]
+\bigskip \bigskip
 
-\[ \lim_{ t \rightarrow \infty } \chi = \chi_{eq} = \frac{\chi_I}{ 1 + k \theta } \longrightarrow \chi_{eq} < \chi_I \]
+Datos del problema:
 
-\[ \lim_{ t \rightarrow \infty } \chi_O = \chi_{eq} \]
+\[ DBO_5 = 250 \left[ \sfrac{\text{mg}}{l} \right] \]
 
-En un estanque de retención con una sustancia no conservativa, la concentración de equilibrio siempre es menor que la concentración de entrada. El sismte funciona como un amortiguador de la carga contaminante, independientemente de la condición inicial \( \chi_0 \).
+\[ k = 0.2 \left[ \text{día}^{-1} \right] \]
 
-La \textbf{eficiencia de tratamiento}, \( \eta \), se define como el factor que representa qué tanto se disminuye \( \chi_O \) con respecto a \( \chi_I \)
+Ecuación de la \( DBO \):
 
-\[ \boxed{ \eta = \frac{ \chi_I - \chi_O }{\chi_I} = 1 - \frac{1}{ 1 + k \theta } } \]
+\[ DBO_t = L_0 \left( 1 - e^{-kt} \right) \]
 
-El \textbf{tiempo de retención}, \( \theta \) es, en promedio, cuánto tiempo pasa el agua dentro del sistema.
+Con \( t = 5 \) días, y despejando \( L_0 \):
 
-\[ \theta = \frac{V}{Q} \]
+\[ L_0 = \frac{DBO_5}{ 1 - e^{-5k} } \]
 
-El volumen requerido para lograr una eficiencia dada es:
+\[ L_0 = \frac{250}{ 1 - e^{ -5 \cdot 0.2 } } = 395 \left[ \sfrac{\text{mg}}{l} \right] \]
 
-\[ \eta = 1 - \frac{1}{ 1 + k \theta } \]
+Con \( t = 10 \) días:
 
-\[ 1 + k \theta = \frac{1}{ 1 - \eta } \]
+\[ DBO_{10} = L_0 \left( 1 - e^{-10k} \right) = 395.5 \left( 1 - e^{ -10 \cdot 0.2 } \right) \]
 
-\[ \theta = \frac{ \frac{1}{ 1  - \eta } - 1 }{k} \]
+\[ \boxed{ DBO_{10} = 342 \left[ \sfrac{\text{mg}}{l} \right] } \]
 
-\[ V = \frac{Q}{k} \left[ \frac{ 1 - \left( 1 - \eta \right) }{ 1 - \eta } \right] \]
+Con \( t = 20 \) días:
 
-\[ \boxed{ \frac{Q}{k} \left( \frac{\eta}{ 1 - \eta } \right) } \]
+\[ DBO_{20} = L_0 \left( 1 - e^{-20k} \right) = 395.5 \left( 1 - e^{ -20 \cdot 0.2 } \right) \]
 
-\section{Demanda bioquímica de oxígeno}
+\[ \boxed{ DBO_{20} = 388.3 \left[ \sfrac{\text{mg}}{l} \right] } \]
 
-Es difícil medir la cantidad de masa de materia orgánica disuelta en el agua. Existen en el agua microorganismos que se van a alimentar de esta materia y al mismo tiempo consumir oxígeno. La cantidad de oxígeno consumida es aproximadamente igual a la cantidad de materia orgánica disuelta presente inicialmente en la muestra de agua.
+Con \( t = \infty \):
 
-La Demanda Bioquímica de Oxígeno (\( DBO \)), se define como:
+\[ DBO_{\infty} = L_0 \]
 
-\[ DBO = \frac{\text{oxígeno usado}}{\text{carbono oxidado}} \]
+\[ \boxed{ DBO_{\text{última}} = 395.5 \left[ \sfrac{\text{mg}}{l} \right] } \]
 
-Por ejemplo, se podría calcula análiticamente la \( DBO \) para la reacción básica de oxídación de la glucosa.
+\section{Ejercicio 3}
 
-\[ C_6 H_{12} O_6 + 6 O_2 \longrightarrow 6 CO_2 + 6 H_2 O \]
+Para dos muestras con la misma \( DBO_5 \), ¿qué error se comete en la \( DBO_t \) si las constantes son diferentes?
 
-Los ocho moles de oxígeno de la izquierda corresponde al oxígeno usado, mientras que los seis moles de carbono en el lado derecho de la reacción corresponden al carbono oxidado.
+Establecemos la ecuación de la \( DBO_t \) en función de la \( DBO_5 \):
 
-En realidad no toda la materia orgánica es biodegradable y no todo el carbono es oxidado, pues alguna parte se incorpora como biomasa.
+\[ DBO_t = DBO_5 \left( \frac{ 1 - e^{-kt} }{ 1 - e^{-5k} } \right) \]
 
-Se sigue utilizando la \( DBO \) ya que es fácil de medir y en condiciones ideales se corresponde con el oxígeno utilizado, y entonces nos puede indicar la materia orgánica disuelta.
+El cociente de \( DBO_{ t k_1 } \) y \( DBO_{ t k_2 } \) es:
 
-Podemos modelar el proceso de consumo de oxígeno como una reacción de primer orden:
+\[ \frac{DBO_{t \ k_1}}{DBO_{t \ k_2}} = \frac{ 1 - e^{ -k_1 t } }{ 1 - e^{ -5 k_1 } } \frac{ 1 - e^{ -5 k_2 t } }{ 1 - e^{ -k_2 t } } \]
 
-\[ \frac{ \mathrm d L_t }{ \mathrm d t } = - k L_t \]
+y el error es:
 
-Donde: 
+\[ e = 1 - \frac{DBO_{t \ k_1}}{DBO_{t \ k_2}} \]
 
-\begin{itemize}
-    \item \( \mathbf{L_t} \): oxígeno remanente (\( \sfrac{\text{mg}}{l} \)) en el tiempo \( t \), equivalente a la cantidad de materia orgánica disuelta.
-\end{itemize}
+\[ \boxed{ e = 1 - \frac{ 1 - e^{ -k_1 t } }{ 1 - e^{ -5 k_1 } } \frac{ 1 - e^{ -5 k_2 t } }{ 1 - e^{ -k_2 t } } } \]
 
-Resolvemos la ecuación diferencial:
+que no depende del valor de la \( DBO_5 \).
 
-\[ L_t = L_0 e^{-kt} \]
+si \( k_1 = 0.15 \text{día}^{-1} \) y \( k_2 = 0.2 \text{día}^{-1} \) en \( t = 10 \) días:
 
-y de acuerdo con la figura:
+\[ e = 1 - \frac{ 1 - e^{ -1.5 } }{ 1 - e^{ -0.75 } } \frac{ 1 - e^{ -1 } }{ 1 - e^{ -2 } } \]
 
-\[ DBO_t = L_0 - L_t \]
+\[ e = -7.6 \% \]
 
-\[ \boxed{ DBO_t = L_0 \left( 1 - e^{-kt} \right) } \]
+En el caso de la \( DBO_\infty \), despejamos \( L_0 \) de la ecuación de la \( DBO_5 \):
 
-\[ \boxed{ DBO_\infty = L_0 } \]
+\[ DBO_\infty = \frac{DBO_5}{ 1 - e^{-5k} } \]
 
-La \( DBO \) se mide en un reactor frasco donde se coloca la muestra diluida, y se mide a lo largo del tiempo el oxígeno remanente.
+\[ e = 1 - \frac{DBO_{\infty \ k_1}}{DBO_{\infty \ k_2}} = 1 - \frac{ 1 - e^{-5 k_2} }{ 1 - e^{ -5 k_1 } } \]
 
-Convencionalmente se utiliza la \( DBO_5 \) (\( t = 5 \) días) para comparar dos muestras del mismo origen (e.g. aguas residuales domésticas), donde se supone que la constante de degradación \( k \) es igual.
+y entonces el error sería
 
-Si \( k \) es diferente para cada muestra, para una \( DBO_5 \) igual, \( L_0 \) puede ser muy diferente.
+\[ e = 1 - \frac{ 1 - e^{-1} }{ 1 - e^{-0.75} } \]
+
+\[ \boxed{ e = -19.8 \% } \]
+
+que es un valor muy alto.
+
+Si la \( DBO_5 = 250 \sfrac{\text{mg}}{l} \):
+
+\[ DBO_{\infty \ k_1} = \frac{250}{ 1 - e^{-0.75} } \left[ \sfrac{\text{mg}}{l} \right] \]
+
+\[ DBO_{\infty \ k_2} = \frac{250}{ 1 - e^{-1} } = 295.5 \left[ \sfrac{\text{mg}}{l} \right] \]
 
 
-Tenemos un sistema con dos reactores conectados entre sí, como se ve en la figura.
+Si calculamos el error con estos datos llegarmos al mismo valor.
 
-Consideramos que tenemos un sistema en estado estacionario y hacemos un balance de masa en cada reactor de la especie de interés:
+Con esto se hace patente la importancia de compara la \( DBO_5 \) entre diferentes muestras solo cuando las constantes de degradación son iguales, o si en conjunto con la \( DBO_5 \) se da el valor de \( k \).
 
 %\nocite{*}
 %\printbibliography

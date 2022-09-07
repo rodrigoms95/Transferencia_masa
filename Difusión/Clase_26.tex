@@ -28,7 +28,7 @@
 
 \renewcommand{\theenumiii}{\roman{enumiii}}
 
-\title{Clase 26: \\ Ejercicios de reactores acoplados}
+\title{Clase 27: \\ Reactores de flujo pistón}
 \author{Rodrigo Muñoz}
 \date{2022}
 
@@ -38,179 +38,109 @@
 
 \maketitle
 
-\section{Ejercicio 1}
+\section{Introducción al flujo pistón}
 
-Para el estanque facultativo de los ejercicios de reactores bien mezclados, ¿en qué porcentaje se disminuye el área requerida si usamos dos estanques con el mismo volumen? ¿Y si usamos tres?
+Un reactor de flujo pistón es aquél donde hay dos dimensiones cortas \( \left( x , y \right) \) y una larga, a lo largo de la cual corre el flujo, por lo que:
 
-\bigskip \bigskip
+\[ v_y , \ v_z = 0 \]
 
-La eficiencias de \( n \) reactores en series es:
+Además, el fluido está bien mezclado en las dimensiones cortas:
 
-\[ \eta = 1 - \left( 1 + k \theta \right) ^ {-n} \]
+\[ \frac{ \partial \chi }{ \partial y } , \ \frac{ \partial \chi }{ \partial z } = 0 \]
 
-Despejamos \( \theta \):
+es decir, no hay transporte de ningún tipo en estas dos direcciones. En cambio, en el eje \( x \), tanto la velocidad como el gradiente de concentración transportarán a la especie de interés.
 
-\[ \left( 1 + k \theta \right) ^ {-n} = 1 - \eta \]
+En el flujo pistón interviene la advección, la difusión, y en muchas ocasiones, la dispersión laminar y turbulenta. Sin embargo, el fenómeno dominante suele ser la advección, ya que de acuerdo con la magnitud de la velocidad, esta forma de transporte llega a ser mucho mayor que la difusión.
 
-\[ \left( 1 + k \theta \right) ^ n = \left( 1 - \eta \right) ^ {-1} \]
+\[ D \frac{ \partial ^ 2 \chi }{ \partial x } \ll v \frac{ \partial \chi }{ \partial x } \]
 
-\[ 1 + k \theta = \left( 1 - \eta \right) ^ { - \sfrac{1}{n} } \]
+Como la especie se \textit{"empuja"} a lo largo de un \textit{"cilindro"} estrecho, el fenómeno es análogo al de un pistón.
 
-\[ \boxed{ \theta = \frac{ \left( 1 - \eta \right) ^ { - \sfrac{1}{n} } - 1 }{ k } } \]
+El flujo pistón se puede utilizar para estudiar transporte en tuberías, canales, e incluso en ríos, con las consideraciones pertinentes. Los reactores en los trenes de tratamiento en una planta de tratamiento de aguas residuales suelen ser canales.
 
-El porcentaje de diferencia de área requerida entre 1 reactor y \( n \) reactores acoplados es:
+Anteriormente vimos que en un sistema sin difusión y con una sustancia no conservativa, la ecucación de transporte es:
 
-\[ p_n = 1 - \frac{A_n}{A_1} \]
+\[ x = \frac{ -v }{ k } \ln \left( \frac{ \chi }{ \chi_I } \right) \]
 
-Sustituimos la definición del tiempo de retención:
+Despejamos \( \chi \):
 
-\[ \theta = \frac{V}{Q} = \frac{ z A }{Q} \]
+\[ \boxed{ \chi = \chi_I e ^ { - k t_r } } \]
 
-\[ A = \frac{ \theta Q }{z} \]
+\[ t_r = \frac{x}{v} \]
 
-\[ A_1 = \frac{Q}{ k z } \left( \frac{ \eta }{ 1 - \eta } \right) \]
+\begin{itemize}
+    \item \( t_r \): tiempo de recorrido; tiempo que tarda el fluido en recorrer cierta distancia. Cuando consideramos toda la longitud del reactor es equivalente al tiempo de retención \( \theta \).
+\end{itemize}
 
-\[ A_n = \frac{Q}{ k z } = \left[ \frac{1}{ \left( 1 - \eta \right) } ^ { \sfrac{1}{n} } - 1 \right] \]
+\[ t_r = \frac{A}{A} \frac{x}{v} = \frac{V}{Q} = \theta \]
 
-\[ A_n = \frac{Q}{ k z } = \left[ \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{1}{n} } }{ \left( 1 - \eta \right)  ^ { \sfrac{1}{n} } } \right] \]
+La eficiencia de tratamiento es 
 
-Sustituimos en la expresión del porcentaje:
+\[ \boxed{ \eta_p = 1 - \frac{ \chi_O }{ \chi_I } = 1 - e ^{ -k \theta } } \]
 
-\[ p_n = 1 - \left[ \frac{ 1 - \eta }{ \eta } \right] \left[ \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{1}{n} } }{ \left( 1 - \eta \right)  ^ { \sfrac{1}{n} } } \right] \]
+Comparemos este resultado contra la eficiencia de un sistema bien mezclado:
 
-\[ p_n = 1 - \left[ \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{1}{n} } }{ \eta \left( 1 - \eta \right)  ^ { \sfrac{ 1 - n }{n} } } \right] \]
+\[ \eta_M = 1 - \frac{ 1 }{ 1 + k \theta } \]
 
-\[ p_n = 1 - \left[ \frac{ \left( 1 - \eta \right) ^ { 1 - \sfrac{1}{n} } - 1 }{ \eta } + \eta \right] \]
+\[ \frac{ \chi_{ O \ M } }{ \chi_{ O \ P } } = \frac{ \frac{ \chi_I }{ 1 + k \theta } }{ \chi_I e ^ { -k \theta } } = \frac{ e ^{ k \theta } }{ 1 + k \theta } > 1 \]
 
-\[ \boxed{ p_n = \frac{ 1 - \left( 1 - \eta \right) ^ { 1 - \sfrac{1}{n} } }{ \eta } } \]
+La última desigualdad es cierta debido a la expansión en serie de Taylor de la exponencial:
 
-Podemos ver que el porcenaje depende únicamente de la eficiencia y de la cantidad de reactores acoplados, por lo que hemos llegado a un resultado general.
+\[ e ^ { k \theta } \approx 1 + k \theta + \frac{ \left( k \theta \right) ^ 2 }{2} + \hdots \]
 
-En el caso de \( n = 2 \):
+La concentración de salida de un sistema bien mezclado siempre será mayor que la de un flujo pistón con el mismo tiempo de retención, por lo que un reactor de flujo pistón es más eficiente.
 
-\[ p_2 = \frac{ 1 - \sqrt{ 1 - \eta } }{ \eta } = \frac{ 1 - \sqrt{ 0.333 } }{ 0.667 } = 63.4 \% \]
+Si tenemos dos sistemas bien mezclados en serie:
 
+\[ \frac{ \chi_{ O \ M } }{ \chi_{ O \ P } }= \frac{ e ^{ k \theta } }{ \left( 1 + k \theta \right) ^ 2 } \approx \frac{ 1 + 2 k \theta + 2 k^2 \theta^2 + \hdots }{ 1 + 2 k \theta + k^2 \theta^2 + \hdots } > 1 \]
 
-\( n = 3 \):
+por lo que el flujo pistón sigue siendo más eficiente que dos sistemas bien mezclados en serie.
 
-\[ p_3 = \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{2}{3} } }{ \eta } = \frac{ 1 - \left( 0.333 \right) ^ { \sfrac{2}{3} } }{ 0.667 } = 77.9 \% \]
+\section{Flujo transitorio con velocidad constante}
 
-\( n = 4 \):
+Vamos a realizar una transformación de coordenadas entre un marco de referencia euleriano (fijo) y uno lagrangiano (siguiendo el movimiento de las partículas del fluido). El marco de referencia lagrangiano se mueve a la velocidad del fluido.
 
-\[ p_4 = \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{3}{4} } }{ \eta } = \frac{ 1 - \left( 0.333 \right) ^ { \sfrac{3}{4} } }{ 0.667 } = 84.2 \% \]
+Ahora suponemos que no hay difusión. Si en el tiempo cero la concentración tiene una cierta forma funcional \( \chi_{ t = 0 } = \mathrm f \left( x \right) \) a lo largo del reactor, conforme pase el tiempo la función se va a advectar de acuerdo con la velocidad, es decir, se va a recorrer sin cambiar su forma.
 
-Entre más reactores acoplados, el porcentaje de reducción de área aumenta, pero ese incremento cada vez es menor.
+\[ \chi_t = \mathrm f \left( x - v t \right) = \mathrm f \left( x' \right) \]
 
-\section{Ejercicio 2}
+donde aplicamos la transformación de coordenadas
 
-Si tenemos dos reactores acoplados iguales con \( k = 0.2 \text{día}^{-1}\), \( \eta = 0.667 \), y \( fr = 0.3 \), calcula \( \theta \).
+\[ \boxed{ x' = x -vt , \qquad t' = t } \]
 
-\bigskip \bigskip
+Si aplicamos esta transformación de coordenadas a las derivadas parciales, por regla de la cadena:
 
-Las ecuaciones para dos tanques con recirculación son: 
+\[ \frac{ \partial \chi }{ \partial x } = \frac{ \partial \chi }{ \partial x' } \frac{ \partial x' }{ \partial x } + \frac{ \partial \chi }{ \partial t' } \frac{ \partial t }{ \partial x } = \frac{ \partial \chi }{ \partial x' } \]
 
-\[ \left( fr + 1 + k \theta \right) \chi_1 - fr \chi_O = \chi_I  \]
+\[ \frac{ \partial \chi }{ \partial t } = \frac{ \partial \chi }{ \partial t' } \frac{ \partial t' }{ \partial t } + \frac{ \partial \chi }{ \partial x' } \frac{ \partial x' }{ \partial t } = \frac{ \partial \chi }{ \partial t' } - v \frac{ \partial \chi }{ \partial x' } \]
 
-\[ \left( - fr - 1 \right) \chi_1 + \left( fr + 1 + k \theta \right) \chi_O = 0 \]
+por lo que:
 
-Despejamos \( \chi_O \):
+\[ \frac{ \partial \chi }{ \partial t' } = \frac{ \partial \chi }{ \partial t } + v \frac{ \partial \chi }{ \partial x } \]
 
-\[ \chi_1 = \frac{ \chi_I + fr \chi_O }{ fr + 1 + k \theta } \]
+En los anteriores desarrollamos utilizamos las siguientes relaciones: \( \sfrac{ \partial x' }{ \partial x } = 1 \), \( \sfrac{ \partial t' }{ \partial x } = 0 \), y \( \sfrac{ \partial t' }{ \partial t } = 1 \), que se pueden obtener calculando las derivadas de las transformaciones de coordenadas.
 
-\[ - \left( fr + 1 \right) \frac{ \chi_I + fr \chi_O }{ fr + 1 + k \theta } + \left( fr + 1 + k \theta \right) \chi_O = 0 \]
+En una sustancia reactiva, la función se advecta y se \textit{"aplasta"} con el tiempo.
 
-\[ - \left( fr + 1 \right) \chi_I + \left( fr + 1 + k \theta \right) ^ 2 \chi_O - fr \left( fr + 1 \right) \chi_O = 0 \]
+La forma diferencial de la ecuación de transporte en el caso estacionario es:
 
-\[ \chi_{ O } = \chi_I \frac{ fr + 1 }{ \left( fr + 1 + k \theta \right) ^ 2 - fr \left( fr + 1 \right) } \]
+\[ \frac{ \mathrm d \chi }{ \mathrm x } = -k \frac{\chi}{v} \]
 
-Sustituimos la eficiencia:
+y en el caso transitorio:
 
-\[ \eta = 1 - \frac{ \chi_O }{ \chi_I } \]
+\[ \frac{ \partial \chi }{ \partial t } + v \frac{ \partial \chi }{ \partial x } = -k \chi \]
 
-\[ \eta = 1 - \frac{ fr + 1 }{ - fr \left( fr + 1 \right) + \left( fr + 1 + k \theta \right) ^ 2 } \]
+La ecuación transitoria en la nuevas coordenadas se convierte en:
 
-\[ \frac{ fr + 1 }{ \left( fr + 1 + k \theta \right) ^ 2 - fr \left( fr + 1 \right) } = 1 - \eta \]
+\[ \frac{ \partial \chi }{ \partial t' } = -k \chi \]
 
-\[ \frac{ fr + 1 }{ 1 - \eta } = \left( fr + 1 + k \theta \right) ^ 2 - fr \left( fr + 1 \right) \]
+Llegamos a esta forma utilizando las sustituciones obtenidas con la regla de la cadena. Esta ecuación tiene una forma análoga a la ecuación estacionaria y se puede resolver de la misma manera.
 
-\[ \begin{aligned}
-    \left( fr + 1 \right) \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] & = fr ^ 2 + 1 + k ^ 1 + \theta ^ 2 + 2 fr + 2 k \theta + 2 fr k \theta \\
-    & = \left( fr + 1 \right) ^ 2 + k ^ 2 + \theta ^ 2 + 2 fr k \theta
-\end{aligned} \]
+\[ \chi \left( x', t' \right) = \mathrm f \left( x' \right) e ^ { -k t' } \]
 
-Reordenamos y usamos la fórmula general para ecuaciones cuadráticas.
+En el nuevo sistema de coordenadas, la ecuación de transporte en un flujo pistón transitorio es muy similar al sistema estacionario, salvo que ahora tenemos el tiempo transcurrido en vez del tiempo de recorrido. Si regresamos a las coordenadas originales, llegamos a:
 
-\[ \left( k ^ 2 \right) \theta ^ 2 + \left( 2 k + 2 k fr \right) \theta + \left\{ \left( fr + 1 \right) ^ 2 - \left( fr + 1 \right) \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] \right\} \]
-
-\[ \theta = \frac{ - 2 k \left( fr + 1 \right) \pm \left\{ 4 k ^ 2 \left( fr + 1 \right) ^ 2 - 4 k ^ 2 \left( fr + 1 \right) \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] \right\} ^ { \sfrac{1}{2} } }{ 2 k ^ 2 } \]
-
-\[ \boxed{ \theta = \frac{ - \left( fr + 1 \right) + \left( fr + 1 \right) ^ { \sfrac{1}{2} } \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] ^ { \sfrac{1}{2} } }{ k } } \]
-
-Si \( fr = 0 \):
-
-\[ \theta = \frac{ - 1 + \left( 1 - \eta \right) ^ { - \sfrac{1}{2} } }{ k } \]
-
-Calculamos el resultado
-
-\[ \theta = \frac{ -1.3 + 1.3 ^ { \sfrac{1}{2} } \left( 0.333 ^ {-1} + 1.3 \right) ^ { \sfrac{1}{2} } }{ 0.2 } \]
-
-\[ \boxed{ \theta = 5.33 \left[ \text{día} ^ {-1} \right] } \]
-
-\section{Ejercicio 3}
-
-Si en dos reactores acoplados en serie, \( \theta_1 = 2 \theta_2 \), ¿el sistema es más eficiente que si \( \theta_1 = \theta_2 \), o si  \( 2 \theta_1 = \theta_2 \)? En los tres casos considera que \( \theta_T \theta_1 + \theta_2 = \text{cte.} \)
-
-\bigskip \bigskip
-
-Para el caso \( a \), en que \( \theta_1 = 2 \theta_2 \):
-
-\[ \theta_1 = \frac{ \theta_T }{2} \]
-
-y la eficiencia del sistema es:
-
-\[ \eta_a = 1 - \left( 1 + k \frac{ \theta_T }{2} \right) ^ {-2} \]
-
-Para el caso \( b \), en que \( \theta_1 = \theta_2 \):
-
-\[ \theta_T = \theta_1 + \theta_2 = \theta_2 + 2 \theta_2 = 3 \theta 2 \]
-
-\[ \theta_1 = \frac{2}{3} \theta_T \]
-
-\[ \theta_2 = \frac{\theta_T}{3} \]
-
-y la eficiencia del sistema es:
-
-\[ \eta_b = 1 - \left( 1 + k \theta_1 \right) ^ {-1} \left( 1 + k \theta_2 \right) ^ {-1} \]
-
-\[ \eta_b = 1 - \left( 1 + \frac{2}{3} k \theta_T \right) ^ {-1} \left( 1 + k \frac{\theta_T}{3} \right) ^ {-1} \]
-
-El segundo termino del lado derecho de la ecuación de la eficiencia en el caso \( a \) es:
-
-\[ 1 + k \theta_T + k ^ 2 \frac{ \theta_{T}^{2} }{4} = x_a \]
-
-En el caso \( b \) es:
-
-\[ 1 + k \theta_T + \frac{2}{9} k ^ 2 \theta_{T}^{2} = x_b \]
-
-y como:
-
-\[ \frac{1}{4} > \frac{2}{9} \]
-
-entonces: 
-
-\[ x_1 > x_2 \]
-
-\[ x_{a}^{-1} < x_{b}^{-1} \]
-
-\[ \eta_a = 1 - x_{a}^{-1} \]
-
-\[ \eta_b = 1 - x_{b}^{-1} \]
-
-\[ \boxed{ \eta_a > \eta_b } \]
-
-Si repetimos para el caso \( c \), llegamos a que \( \eta_c = \eta_b \)
-
-De esta manera, llegamos a la conclusión que un sistema acoplado es más eficiente cuando todos los tiempos de retención son iguales.
+\[ \boxed{ \chi \left( x, t \right) = \mathrm f \left( x - v t \right) e ^ { -k t } } \]
 
 %\nocite{*}
 %\printbibliography

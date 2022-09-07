@@ -28,7 +28,7 @@
 
 \renewcommand{\theenumiii}{\roman{enumiii}}
 
-\title{Clase 25: \\ Reactores acoplados}
+\title{Clase 26: \\ Ejercicios de reactores acoplados}
 \author{Rodrigo Muñoz}
 \date{2022}
 
@@ -38,139 +38,179 @@
 
 \maketitle
 
-\section{Reactores en serie}
+\section{Ejercicio 1}
 
-Tenemos un sistema con dos reactores conectados entre sí, como se ve en la figura.
+Para el estanque facultativo de los ejercicios de reactores bien mezclados, ¿en qué porcentaje se disminuye el área requerida si usamos dos estanques con el mismo volumen? ¿Y si usamos tres?
 
-Consideramos que tenemos un sistema en estado estacionario y hacemos un balance de masa en cada reactor de la especie de interés:
+\bigskip \bigskip
 
-\[ \begin{aligned}
-    1 & : \quad Q \chi_I = Q \chi_1 + k V_1 \chi_1 \\
-    2 & : \quad Q \chi_1 = Q \chi_2 + k V_2 \chi_O 
-\end{aligned} \]
+La eficiencias de \( n \) reactores en series es:
 
-Reordenamos y despejamos la concentración de salida, utilizando la definición del tiempo de retención:
+\[ \eta = 1 - \left( 1 + k \theta \right) ^ {-n} \]
 
-\[ \chi_I = \chi_1 + k \theta_1 \chi_1 \]
+Despejamos \( \theta \):
 
-\[ \chi_1 = \frac{ \chi_I }{ 1 + k \theta_1 } \]
+\[ \left( 1 + k \theta \right) ^ {-n} = 1 - \eta \]
 
-\[ \chi_O = \frac{ \chi_1 }{ 1 + k \theta_2 } \]
+\[ \left( 1 + k \theta \right) ^ n = \left( 1 - \eta \right) ^ {-1} \]
 
-y llegamos a la ecuación de la concentración para dos estanques acoplados:
+\[ 1 + k \theta = \left( 1 - \eta \right) ^ { - \sfrac{1}{n} } \]
 
-\[ \boxed{ \chi_O = \chi_I \left( 1 + k \theta_1 \right) ^ {-1} \left( 1 + k \theta_2 \right) ^ {-1} } \]
+\[ \boxed{ \theta = \frac{ \left( 1 - \eta \right) ^ { - \sfrac{1}{n} } - 1 }{ k } } \]
 
-Si los dos tiempos de retención son iguales:
+El porcentaje de diferencia de área requerida entre 1 reactor y \( n \) reactores acoplados es:
 
-\[ \boxed{ \chi_O = \frac{ \chi_I }{ \left( 1 + k \theta \right) ^ 2 } } \]
+\[ p_n = 1 - \frac{A_n}{A_1} \]
 
-Si repetimos el proceso podemos llegar al caso general para \( n \) reactores conectados en serie.
+Sustituimos la definición del tiempo de retención:
 
-Con \( \theta_i \) diferentes:
+\[ \theta = \frac{V}{Q} = \frac{ z A }{Q} \]
 
-\[ \boxed{ \chi_O = \chi_I \displaystyle\prod_{i}^{n} \left( 1 + k \theta_i \right) ^ {-1} } \]
+\[ A = \frac{ \theta Q }{z} \]
 
-Con el mismo tiempo de retención en todos los estanques:
+\[ A_1 = \frac{Q}{ k z } \left( \frac{ \eta }{ 1 - \eta } \right) \]
 
-\[ \boxed{ \chi_O = \frac{ \chi_I }{ \left( 1 + k \theta \right) ^ n } } \]
+\[ A_n = \frac{Q}{ k z } = \left[ \frac{1}{ \left( 1 - \eta \right) } ^ { \sfrac{1}{n} } - 1 \right] \]
 
-La eficiencia de tratamiento será:
+\[ A_n = \frac{Q}{ k z } = \left[ \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{1}{n} } }{ \left( 1 - \eta \right)  ^ { \sfrac{1}{n} } } \right] \]
+
+Sustituimos en la expresión del porcentaje:
+
+\[ p_n = 1 - \left[ \frac{ 1 - \eta }{ \eta } \right] \left[ \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{1}{n} } }{ \left( 1 - \eta \right)  ^ { \sfrac{1}{n} } } \right] \]
+
+\[ p_n = 1 - \left[ \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{1}{n} } }{ \eta \left( 1 - \eta \right)  ^ { \sfrac{ 1 - n }{n} } } \right] \]
+
+\[ p_n = 1 - \left[ \frac{ \left( 1 - \eta \right) ^ { 1 - \sfrac{1}{n} } - 1 }{ \eta } + \eta \right] \]
+
+\[ \boxed{ p_n = \frac{ 1 - \left( 1 - \eta \right) ^ { 1 - \sfrac{1}{n} } }{ \eta } } \]
+
+Podemos ver que el porcenaje depende únicamente de la eficiencia y de la cantidad de reactores acoplados, por lo que hemos llegado a un resultado general.
+
+En el caso de \( n = 2 \):
+
+\[ p_2 = \frac{ 1 - \sqrt{ 1 - \eta } }{ \eta } = \frac{ 1 - \sqrt{ 0.333 } }{ 0.667 } = 63.4 \% \]
+
+
+\( n = 3 \):
+
+\[ p_3 = \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{2}{3} } }{ \eta } = \frac{ 1 - \left( 0.333 \right) ^ { \sfrac{2}{3} } }{ 0.667 } = 77.9 \% \]
+
+\( n = 4 \):
+
+\[ p_4 = \frac{ 1 - \left( 1 - \eta \right) ^ { \sfrac{3}{4} } }{ \eta } = \frac{ 1 - \left( 0.333 \right) ^ { \sfrac{3}{4} } }{ 0.667 } = 84.2 \% \]
+
+Entre más reactores acoplados, el porcentaje de reducción de área aumenta, pero ese incremento cada vez es menor.
+
+\section{Ejercicio 2}
+
+Si tenemos dos reactores acoplados iguales con \( k = 0.2 \text{día}^{-1}\), \( \eta = 0.667 \), y \( fr = 0.3 \), calcula \( \theta \).
+
+\bigskip \bigskip
+
+Las ecuaciones para dos tanques con recirculación son: 
+
+\[ \left( fr + 1 + k \theta \right) \chi_1 - fr \chi_O = \chi_I  \]
+
+\[ \left( - fr - 1 \right) \chi_1 + \left( fr + 1 + k \theta \right) \chi_O = 0 \]
+
+Despejamos \( \chi_O \):
+
+\[ \chi_1 = \frac{ \chi_I + fr \chi_O }{ fr + 1 + k \theta } \]
+
+\[ - \left( fr + 1 \right) \frac{ \chi_I + fr \chi_O }{ fr + 1 + k \theta } + \left( fr + 1 + k \theta \right) \chi_O = 0 \]
+
+\[ - \left( fr + 1 \right) \chi_I + \left( fr + 1 + k \theta \right) ^ 2 \chi_O - fr \left( fr + 1 \right) \chi_O = 0 \]
+
+\[ \chi_{ O } = \chi_I \frac{ fr + 1 }{ \left( fr + 1 + k \theta \right) ^ 2 - fr \left( fr + 1 \right) } \]
+
+Sustituimos la eficiencia:
 
 \[ \eta = 1 - \frac{ \chi_O }{ \chi_I } \]
 
-\[ \boxed{ \begin{aligned}
-    \eta & = 1 - \prod \left( 1 + k \theta_i \right) ^ {-1} \\
-    \eta & = 1 - \left( 1 + k \theta \right) ^ {-n}
-\end{aligned} } \]
+\[ \eta = 1 - \frac{ fr + 1 }{ - fr \left( fr + 1 \right) + \left( fr + 1 + k \theta \right) ^ 2 } \]
 
-Comparemos ahora la eficiencia de tratamiento de un reactor con tiempo de retención \( 2 \theta \) contra dos reactores en serie, cada uno con tiempo de retención \( \theta \): 
+\[ \frac{ fr + 1 }{ \left( fr + 1 + k \theta \right) ^ 2 - fr \left( fr + 1 \right) } = 1 - \eta \]
 
-\[ \eta_A = 1 - \frac{1}{ 1 + 2 k \theta } \]
-
-\[ \eta_B = 1 - \frac{1}{ \left( 1 + k \theta \right) ^ 2 } = 1 - \frac{1}{ 1 + 2 k \theta + k ^ 2 \theta ^ 2 } \]
-
-Vemos que:
-
-\[ \eta_B > \eta_A \]
-
-ya que:
-
-\[ 1 - \frac{1}{ \left( 1 + k \theta \right) ^ 2 } = 1 - \frac{1}{ 1 + 2 k \theta + k ^ 2 \theta ^ 2 } > 1 - \frac{1}{ 1 + 2 k \theta } \]
-
-\[ 1 + 2 k \theta < 1 + 2 k \theta + k ^ 2 \theta ^ 2 \]
-
-\[ 0 < k ^ 2 \theta ^ 2 \]
-
-Hemos llegado a la conclusón que es más eficiente tener reactores en serie, que uno solo del mismo volumen.
-
-\section{Reactores acoplados con recirculación}
-
-En ocasiones, los reactores pueden tener recirculación, lo que permite regresar microorganismos que se encuentran en una etapa de crecimiento óptimo a donde la concentración es mayor, y así mantener un régimen microbiológico ideal.
-
-\begin{itemize}
-    \item \textbf{fr}: factor de recirculación, \( 0 \geq fr < 1 \)
-\end{itemize}
-
-En este caso el balance de masa es: 
+\[ \frac{ fr + 1 }{ 1 - \eta } = \left( fr + 1 + k \theta \right) ^ 2 - fr \left( fr + 1 \right) \]
 
 \[ \begin{aligned}
-    1 & : \ Q \chi_I + fr Q \chi_O = Q \left( fr + 1 \right) \chi_1 + k V_1 \chi_1 \\
-    2 & : \ Q \left( fr + 1 \right) \chi_1 = fr Q \chi_O + k V_2 \chi_O
+    \left( fr + 1 \right) \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] & = fr ^ 2 + 1 + k ^ 1 + \theta ^ 2 + 2 fr + 2 k \theta + 2 fr k \theta \\
+    & = \left( fr + 1 \right) ^ 2 + k ^ 2 + \theta ^ 2 + 2 fr k \theta
 \end{aligned} \]
 
-Reordenamos el sistema de ecuaciones de dos incógnitas utilizando la definición del tiempo de retención:
+Reordenamos y usamos la fórmula general para ecuaciones cuadráticas.
 
-\[ \boxed{ \begin{aligned}
-    1 & : \ \left( fr + 1 + k \theta_1 \right) \chi_1 - fr \chi_O = \chi_I \\
-    2 & : \ \left( -fr - 1 \right) \chi_1 + \left( fr + 1 + \theta_2 k \right) \chi_O = 0
-\end{aligned} } \]
+\[ \left( k ^ 2 \right) \theta ^ 2 + \left( 2 k + 2 k fr \right) \theta + \left\{ \left( fr + 1 \right) ^ 2 - \left( fr + 1 \right) \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] \right\} \]
 
-El sistema lineal se puede resolver por varios métodos, como la eliminación de Gauss.
+\[ \theta = \frac{ - 2 k \left( fr + 1 \right) \pm \left\{ 4 k ^ 2 \left( fr + 1 \right) ^ 2 - 4 k ^ 2 \left( fr + 1 \right) \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] \right\} ^ { \sfrac{1}{2} } }{ 2 k ^ 2 } \]
 
-Para \( n \) reactores tenemos el siguiente balance de masa:
+\[ \boxed{ \theta = \frac{ - \left( fr + 1 \right) + \left( fr + 1 \right) ^ { \sfrac{1}{2} } \left[ \left( 1 - \eta \right) ^ {-1} + fr \right] ^ { \sfrac{1}{2} } }{ k } } \]
 
-\[ \begin{aligned}
-    1 & : \ \chi_I + fr_1 \chi_2 = \left( fr_1+ 1 + k \theta_1 \right) \chi_1 \\
-    2 & : \ \left( fr_1 + 1 \right) \chi_1 + fr_2 \chi_3 = \left( fr_1 + fr_2 + 1 + k \theta_2 \right) \chi_2 \\
-    3 & : \ \left( fr_2 + 1 \right) \chi_2 + fr_3 \chi_4 = \left( fr_2 + fr_3 + 1 + k \theta_3 \right) \chi_3 \\
-    \vdots & \\
-    n & : \ \left( fr_{ n - 1 } + 1 \right) \chi_{ n - 1 } = \left( fr_{ n - 1 } + 1 + k \theta_n \right) \chi_n \\
-\end{aligned} \]
+Si \( fr = 0 \):
 
-Y el sistema de ecuaciones queda como:
+\[ \theta = \frac{ - 1 + \left( 1 - \eta \right) ^ { - \sfrac{1}{2} } }{ k } \]
 
-\[ \boxed{ \begin{aligned}
-    1 & : \ \left( fr_1 + 1 + k \theta_1 \right) \chi_1 - fr_2 \chi_2 = \chi_I \\
-    i & : \ \left( -fr_{ i - 1 } - 1 \right) \chi_{ i - 1 } + \left( fr_{ i - 1 } + fr_i + 1 + \theta_i k \right) \chi_i = 0, \quad 2 < i < n \\
-    n & : \ \left( -fr_{ n - 1 } - 1 \right) \chi_{ n - 1 } + \left( fr_{ n - 1 } + 1 + \theta_n k \right) \chi_n = 0
-\end{aligned} } \]
+Calculamos el resultado
 
-\section{Reactores en paralelo}
+\[ \theta = \frac{ -1.3 + 1.3 ^ { \sfrac{1}{2} } \left( 0.333 ^ {-1} + 1.3 \right) ^ { \sfrac{1}{2} } }{ 0.2 } \]
 
-El balance de masa en cada reactor es:
+\[ \boxed{ \theta = 5.33 \left[ \text{día} ^ {-1} \right] } \]
 
-\[ \chi_1 = \frac{ \chi_I }{ 1 + k V_1 Q_{1}^{-1} } \]
+\section{Ejercicio 3}
 
-\[ \chi_2 = \frac{ \chi_I }{ 1 + k V_2 Q_{2}^{-1} } \]
+Si en dos reactores acoplados en serie, \( \theta_1 = 2 \theta_2 \), ¿el sistema es más eficiente que si \( \theta_1 = \theta_2 \), o si  \( 2 \theta_1 = \theta_2 \)? En los tres casos considera que \( \theta_T \theta_1 + \theta_2 = \text{cte.} \)
 
-En el punto de mezclado también hacemos un balance de masa:
+\bigskip \bigskip
 
-\[ \chi_O = \frac{ \chi_1 Q_1 + \chi_2 Q_2 }{ Q_1 + Q_2 } \]
+Para el caso \( a \), en que \( \theta_1 = 2 \theta_2 \):
 
-Unimos las tres ecuaciones:
+\[ \theta_1 = \frac{ \theta_T }{2} \]
 
-\[ \boxed{ \chi_O = \frac{ \chi_I }{ Q_1 + Q_2 } \left( \frac{ Q_1 } { 1 + k V_1 Q_{1}^{-1} } + \frac{ Q_2 } { 1 + k V_2 Q_{2}^{-1} } \right) } \]
+y la eficiencia del sistema es:
 
-Cuando \( Q_1 = Q_2 \) y \( V_1 = V_2 \)
+\[ \eta_a = 1 - \left( 1 + k \frac{ \theta_T }{2} \right) ^ {-2} \]
 
-\[ \chi_1 = \chi_2 \]
+Para el caso \( b \), en que \( \theta_1 = \theta_2 \):
 
-\[ \chi_O = \chi_1 \]
+\[ \theta_T = \theta_1 + \theta_2 = \theta_2 + 2 \theta_2 = 3 \theta 2 \]
 
-Si tenemos \( n \) reactores:
+\[ \theta_1 = \frac{2}{3} \theta_T \]
 
-\[ \boxed{ \chi_O = \frac{ \chi_I }{ \sum Q_i } \left( \displaystyle\sum \frac{ Q_i }{ 1 + k + V_i Q_{i}^{-1} } \right) } \]
+\[ \theta_2 = \frac{\theta_T}{3} \]
+
+y la eficiencia del sistema es:
+
+\[ \eta_b = 1 - \left( 1 + k \theta_1 \right) ^ {-1} \left( 1 + k \theta_2 \right) ^ {-1} \]
+
+\[ \eta_b = 1 - \left( 1 + \frac{2}{3} k \theta_T \right) ^ {-1} \left( 1 + k \frac{\theta_T}{3} \right) ^ {-1} \]
+
+El segundo termino del lado derecho de la ecuación de la eficiencia en el caso \( a \) es:
+
+\[ 1 + k \theta_T + k ^ 2 \frac{ \theta_{T}^{2} }{4} = x_a \]
+
+En el caso \( b \) es:
+
+\[ 1 + k \theta_T + \frac{2}{9} k ^ 2 \theta_{T}^{2} = x_b \]
+
+y como:
+
+\[ \frac{1}{4} > \frac{2}{9} \]
+
+entonces: 
+
+\[ x_1 > x_2 \]
+
+\[ x_{a}^{-1} < x_{b}^{-1} \]
+
+\[ \eta_a = 1 - x_{a}^{-1} \]
+
+\[ \eta_b = 1 - x_{b}^{-1} \]
+
+\[ \boxed{ \eta_a > \eta_b } \]
+
+Si repetimos para el caso \( c \), llegamos a que \( \eta_c = \eta_b \)
+
+De esta manera, llegamos a la conclusión que un sistema acoplado es más eficiente cuando todos los tiempos de retención son iguales.
 
 %\nocite{*}
 %\printbibliography

@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 23: \\ Reactores bien mezclados}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Operaciones y procesos unitarios}
+
+Las \textbf{operaciones y procesos unitarios} son sistemas ingenieriles que realizn una transformación en el fluido a tratar, que generalmente es agua, pero también podría ser aire. El objetivo del tratamiento es disminuir la carga de contaminantes, los cuales son determinados de acuerdo con el uso en particular que se le quiere dar al agua, como descargarlo a un cuerpo de agua natural, reutilizarla donde no haya contacto con las personas, o incluso potabilizarla.
+
+Las \textbf{operaciones} se refieren a transformaciones físicas, como la sedimentación, mientras que los \textbf{procesos} se tratan de transformaciones biológicas y química, como un reactor de lodos activaodos.
+
+Un \textbf{reactor} es el elemento físico donde se lleva a cabo el proceso u operación unitaria. Un \textbf{tren o sistema de tratamiento} es un conjunto de reactores, cuyas entradas y salidas están conectadas entre sí de diversas maneras, que logran la disminución buscada de los contaminantes.
+
+En los siguientes capítulos, estudiaremos los tipos básicos de reactores y como se pueden conectar e interactuar entre sí.
+
+\section{Sistema bien mezclado}
+
+Un sistema bien mezclado tiene las siguientes características:
+
+\begin{itemize}
+    \item La concentración de las especies es homogénea espacialmente
+    \item Dentro del sistema no hay transporte por difusión o advección de zonas aisladas de mayor concentración.
+    \item La concentración en la salida es la concentración del sistema.
+    \item El volumen de conttrol suele ser fíjo.
+\end{itemize}
+
+Las ecuaciones para describir a los sistemas bien mezclados son las mismas que las desarrolladas para el balance de masa estacionario con diferentes casos de entradas y salidas.
+
+\subsection{Sistema frasco o por lotes (\textit{batch})}
+
+Características:
+
+\begin{itemize}
+    \item No hay entradas ni salidas durante la transformación.
+    \item El líquido se coloca en un tanque, donde se realiza toda la transformación, y posteriormente se retira.
+\end{itemize}
+
+Ecuaciones de balance de masa o de concentración:
+
+\[ \chi = \chi_0 e^{-kt} \]
+
+\[ \lim_{ t \rightarrow \infty } \chi = 0 \]
+
+\subsection{Estanque de retención}
+
+Características:
+
+\begin{itemize}
+    \item La entrada y salida son constantes
+    \item Por lo general, hay solo una entrada y una salida.
+\end{itemize}
+
+Ecuaciones:
+
+\[ \chi = \chi_0 e^{ - \left( \theta^{-1} \right) t } + \frac{\chi_I}{ 1 + k \theta } \left[ 1 - e^{  - \left( \theta^{-1} \right) t } \right] \]
+
+\[ \lim_{ t \rightarrow \infty } \chi = \chi_{eq} = \frac{\chi_I}{ 1 + k \theta } \longrightarrow \chi_{eq} < \chi_I \]
+
+\[ \lim_{ t \rightarrow \infty } \chi_O = \chi_{eq} \]
+
+En un estanque de retención con una sustancia no conservativa, la concentración de equilibrio siempre es menor que la concentración de entrada. El sismte funciona como un amortiguador de la carga contaminante, independientemente de la condición inicial \( \chi_0 \).
+
+La \textbf{eficiencia de tratamiento}, \( \eta \), se define como el factor que representa qué tanto se disminuye \( \chi_O \) con respecto a \( \chi_I \)
+
+\[ \boxed{ \eta = \frac{ \chi_I - \chi_O }{\chi_I} = 1 - \frac{1}{ 1 + k \theta } } \]
+
+El \textbf{tiempo de retención}, \( \theta \) es, en promedio, cuánto tiempo pasa el agua dentro del sistema.
+
+\[ \theta = \frac{V}{Q} \]
+
+El volumen requerido para lograr una eficiencia dada es:
+
+\[ \eta = 1 - \frac{1}{ 1 + k \theta } \]
+
+\[ 1 + k \theta = \frac{1}{ 1 - \eta } \]
+
+\[ \theta = \frac{ \frac{1}{ 1  - \eta } - 1 }{k} \]
+
+\[ V = \frac{Q}{k} \left[ \frac{ 1 - \left( 1 - \eta \right) }{ 1 - \eta } \right] \]
+
+\[ \boxed{ \frac{Q}{k} \left( \frac{\eta}{ 1 - \eta } \right) } \]
+
+\section{Demanda bioquímica de oxígeno}
+
+Es difícil medir la cantidad de masa de materia orgánica disuelta en el agua. Existen en el agua microorganismos que se van a alimentar de esta materia y al mismo tiempo consumir oxígeno. La cantidad de oxígeno consumida es aproximadamente igual a la cantidad de materia orgánica disuelta presente inicialmente en la muestra de agua.
+
+La Demanda Bioquímica de Oxígeno (\( DBO \)), se define como:
+
+\[ DBO = \frac{\text{oxígeno usado}}{\text{carbono oxidado}} \]
+
+Por ejemplo, se podría calcula análiticamente la \( DBO \) para la reacción básica de oxídación de la glucosa.
+
+\[ C_6 H_{12} O_6 + 6 O_2 \longrightarrow 6 CO_2 + 6 H_2 O \]
+
+Los ocho moles de oxígeno de la izquierda corresponde al oxígeno usado, mientras que los seis moles de carbono en el lado derecho de la reacción corresponden al carbono oxidado.
+
+En realidad no toda la materia orgánica es biodegradable y no todo el carbono es oxidado, pues alguna parte se incorpora como biomasa.
+
+Se sigue utilizando la \( DBO \) ya que es fácil de medir y en condiciones ideales se corresponde con el oxígeno utilizado, y entonces nos puede indicar la materia orgánica disuelta.
+
+Podemos modelar el proceso de consumo de oxígeno como una reacción de primer orden:
+
+\[ \frac{ \mathrm d L_t }{ \mathrm d t } = - k L_t \]
+
+Donde: 
+
+\begin{itemize}
+    \item \( \mathbf{L_t} \): oxígeno remanente (\( \sfrac{\text{mg}}{l} \)) en el tiempo \( t \), equivalente a la cantidad de materia orgánica disuelta.
+\end{itemize}
+
+Resolvemos la ecuación diferencial:
+
+\[ L_t = L_0 e^{-kt} \]
+
+y de acuerdo con la figura:
+
+\[ DBO_t = L_0 - L_t \]
+
+\[ \boxed{ DBO_t = L_0 \left( 1 - e^{-kt} \right) } \]
+
+\[ \boxed{ DBO_\infty = L_0 } \]
+
+La \( DBO \) se mide en un reactor frasco donde se coloca la muestra diluida, y se mide a lo largo del tiempo el oxígeno remanente.
+
+Convencionalmente se utiliza la \( DBO_5 \) (\( t = 5 \) días) para comparar dos muestras del mismo origen (e.g. aguas residuales domésticas), donde se supone que la constante de degradación \( k \) es igual.
+
+Si \( k \) es diferente para cada muestra, para una \( DBO_5 \) igual, \( L_0 \) puede ser muy diferente.
+
+
+Tenemos un sistema con dos reactores conectados entre sí, como se ve en la figura.
+
+Consideramos que tenemos un sistema en estado estacionario y hacemos un balance de masa en cada reactor de la especie de interés:
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}

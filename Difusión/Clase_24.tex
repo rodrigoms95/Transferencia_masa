@@ -28,7 +28,7 @@
 
 \renewcommand{\theenumiii}{\roman{enumiii}}
 
-\title{Clase 25: \\ Ejercicios de Reactores bien mezclados}
+\title{Clase 25: \\ Reactores acoplados}
 \author{Rodrigo Muñoz}
 \date{2022}
 
@@ -38,130 +38,139 @@
 
 \maketitle
 
-\section{Ejercicio 1}
+\section{Reactores en serie}
 
-Una ciudad tiene una descarga de aguas residuales de \( 5 \sfrac{\text{m}^3}{\text{s}} \) con una \( DBO_5 \) de \( 300 \sfrac{\text{mg}}{l} \) y una constante de degradación de \( 0.15 \text{día}^{-1} \). Diseña un reactor bien mezclado que permita tratar el agua a \( 100 \left[ 100 \sfrac{\text{mg}}{l} \right] \).
+Tenemos un sistema con dos reactores conectados entre sí, como se ve en la figura.
 
-\bigskip \bigskip
+Consideramos que tenemos un sistema en estado estacionario y hacemos un balance de masa en cada reactor de la especie de interés:
 
-Datos del problema:
+\[ \begin{aligned}
+    1 & : \quad Q \chi_I = Q \chi_1 + k V_1 \chi_1 \\
+    2 & : \quad Q \chi_1 = Q \chi_2 + k V_2 \chi_O 
+\end{aligned} \]
 
-\[ \chi_I = 300 \left[ \sfrac{\text{mg}}{l} \right] \]
+Reordenamos y despejamos la concentración de salida, utilizando la definición del tiempo de retención:
 
-\[ \chi_O = 100 \left[ \sfrac{\text{mg}}{l} \right] \]
+\[ \chi_I = \chi_1 + k \theta_1 \chi_1 \]
 
-\[ Q = 300 \left[ \sfrac{\text{m}^3}{\text{s}} \right] = 5 \cdot 3600 \cdot 24 = 432,000 \left[ \sfrac{\text{m}^3}{\text{día}} \right] \]
+\[ \chi_1 = \frac{ \chi_I }{ 1 + k \theta_1 } \]
 
-\[ k = 0.15 \left[ \text{día}^{-1} \right] \]
+\[ \chi_O = \frac{ \chi_1 }{ 1 + k \theta_2 } \]
 
-Calculamos la eficiencia:
+y llegamos a la ecuación de la concentración para dos estanques acoplados:
 
-\[ \eta = 1 - \frac{\chi_O}{\chi_I} = 1 - \frac{100}{300} = 0.667 \]
+\[ \boxed{ \chi_O = \chi_I \left( 1 + k \theta_1 \right) ^ {-1} \left( 1 + k \theta_2 \right) ^ {-1} } \]
 
-Volumen necesario para lograr la eficiencia:
+Si los dos tiempos de retención son iguales:
 
-\[ V = \frac{Q}{k} \left( \frac{\eta}{ 1 - \eta } \right) \]
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ \left( 1 + k \theta \right) ^ 2 } } \]
 
-\[ V = \frac{432,000}{0.15} \left( \frac{\eta}{ 1 - \eta } \right) \]
+Si repetimos el proceso podemos llegar al caso general para \( n \) reactores conectados en serie.
 
-Si el reactor debe tener una profundia de \( 2 \text{m} \), ¿cuántas hectáreas se requieren de terreno?
+Con \( \theta_i \) diferentes:
 
-\[ z = 2 \left[ \text{m} \right] \]
+\[ \boxed{ \chi_O = \chi_I \displaystyle\prod_{i}^{n} \left( 1 + k \theta_i \right) ^ {-1} } \]
 
-\[ A = \frac{V}{z} = \frac{5.77 \times 10^6}{2} = 2.89 \times 10^6 \left[ \text{m}^2 \right] \]
+Con el mismo tiempo de retención en todos los estanques:
 
-Este tipo de sistemas de tratamiento se llaman estanques facultativos, donde se tiene un reactor bien mezclado, con poca profundidad y sin aireación. En realidad el sistema no tiene concentraciones homogéneas, ya que no hay ningún dispositivo de mezclado mecánico, y la sedimentación genera un gradiente vertical de concentración. Como la capa superior está en contacto con el aire, hay un suministro constante de oxígeno, mientras que hacia el fondo solo hay consume de éste por parte de los microorganismos. Esto genera un gradiente de concentración de oxígeno y hace que haya un régimen aerobio en la parte superior del estanque y uno anaerobio en la parte inferior.
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ \left( 1 + k \theta \right) ^ n } } \]
 
-\section{Ejercicio 2}
+La eficiencia de tratamiento será:
 
-En un frasco se coloca una muestra de aguas residuales que resultan con una \( DBO_5 \) de \( 200 \sfrac{\text{mg}}{l} \). Si suponemos que la constante de degradación es de \( 0.2 \text{día}^{-1} \), ¿cuál será la \( DBO_{10} \), \( DBO_{20} \), y la \( DBO_{\text{última}} \)?
+\[ \eta = 1 - \frac{ \chi_O }{ \chi_I } \]
 
-\bigskip \bigskip
+\[ \boxed{ \begin{aligned}
+    \eta & = 1 - \prod \left( 1 + k \theta_i \right) ^ {-1} \\
+    \eta & = 1 - \left( 1 + k \theta \right) ^ {-n}
+\end{aligned} } \]
 
-Datos del problema:
+Comparemos ahora la eficiencia de tratamiento de un reactor con tiempo de retención \( 2 \theta \) contra dos reactores en serie, cada uno con tiempo de retención \( \theta \): 
 
-\[ DBO_5 = 250 \left[ \sfrac{\text{mg}}{l} \right] \]
+\[ \eta_A = 1 - \frac{1}{ 1 + 2 k \theta } \]
 
-\[ k = 0.2 \left[ \text{día}^{-1} \right] \]
+\[ \eta_B = 1 - \frac{1}{ \left( 1 + k \theta \right) ^ 2 } = 1 - \frac{1}{ 1 + 2 k \theta + k ^ 2 \theta ^ 2 } \]
 
-Ecuación de la \( DBO \):
+Vemos que:
 
-\[ DBO_t = L_0 \left( 1 - e^{-kt} \right) \]
+\[ \eta_B > \eta_A \]
 
-Con \( t = 5 \) días, y despejando \( L_0 \):
+ya que:
 
-\[ L_0 = \frac{DBO_5}{ 1 - e^{-5k} } \]
+\[ 1 - \frac{1}{ \left( 1 + k \theta \right) ^ 2 } = 1 - \frac{1}{ 1 + 2 k \theta + k ^ 2 \theta ^ 2 } > 1 - \frac{1}{ 1 + 2 k \theta } \]
 
-\[ L_0 = \frac{250}{ 1 - e^{ -5 \cdot 0.2 } } = 395 \left[ \sfrac{\text{mg}}{l} \right] \]
+\[ 1 + 2 k \theta < 1 + 2 k \theta + k ^ 2 \theta ^ 2 \]
 
-Con \( t = 10 \) días:
+\[ 0 < k ^ 2 \theta ^ 2 \]
 
-\[ DBO_{10} = L_0 \left( 1 - e^{-10k} \right) = 395.5 \left( 1 - e^{ -10 \cdot 0.2 } \right) \]
+Hemos llegado a la conclusón que es más eficiente tener reactores en serie, que uno solo del mismo volumen.
 
-\[ \boxed{ DBO_{10} = 342 \left[ \sfrac{\text{mg}}{l} \right] } \]
+\section{Reactores acoplados con recirculación}
 
-Con \( t = 20 \) días:
+En ocasiones, los reactores pueden tener recirculación, lo que permite regresar microorganismos que se encuentran en una etapa de crecimiento óptimo a donde la concentración es mayor, y así mantener un régimen microbiológico ideal.
 
-\[ DBO_{20} = L_0 \left( 1 - e^{-20k} \right) = 395.5 \left( 1 - e^{ -20 \cdot 0.2 } \right) \]
+\begin{itemize}
+    \item \textbf{fr}: factor de recirculación, \( 0 \geq fr < 1 \)
+\end{itemize}
 
-\[ \boxed{ DBO_{20} = 388.3 \left[ \sfrac{\text{mg}}{l} \right] } \]
+En este caso el balance de masa es: 
 
-Con \( t = \infty \):
+\[ \begin{aligned}
+    1 & : \ Q \chi_I + fr Q \chi_O = Q \left( fr + 1 \right) \chi_1 + k V_1 \chi_1 \\
+    2 & : \ Q \left( fr + 1 \right) \chi_1 = fr Q \chi_O + k V_2 \chi_O
+\end{aligned} \]
 
-\[ DBO_{\infty} = L_0 \]
+Reordenamos el sistema de ecuaciones de dos incógnitas utilizando la definición del tiempo de retención:
 
-\[ \boxed{ DBO_{\text{última}} = 395.5 \left[ \sfrac{\text{mg}}{l} \right] } \]
+\[ \boxed{ \begin{aligned}
+    1 & : \ \left( fr + 1 + k \theta_1 \right) \chi_1 - fr \chi_O = \chi_I \\
+    2 & : \ \left( -fr - 1 \right) \chi_1 + \left( fr + 1 + \theta_2 k \right) \chi_O = 0
+\end{aligned} } \]
 
-\section{Ejercicio 3}
+El sistema lineal se puede resolver por varios métodos, como la eliminación de Gauss.
 
-Para dos muestras con la misma \( DBO_5 \), ¿qué error se comete en la \( DBO_t \) si las constantes son diferentes?
+Para \( n \) reactores tenemos el siguiente balance de masa:
 
-Establecemos la ecuación de la \( DBO_t \) en función de la \( DBO_5 \):
+\[ \begin{aligned}
+    1 & : \ \chi_I + fr_1 \chi_2 = \left( fr_1+ 1 + k \theta_1 \right) \chi_1 \\
+    2 & : \ \left( fr_1 + 1 \right) \chi_1 + fr_2 \chi_3 = \left( fr_1 + fr_2 + 1 + k \theta_2 \right) \chi_2 \\
+    3 & : \ \left( fr_2 + 1 \right) \chi_2 + fr_3 \chi_4 = \left( fr_2 + fr_3 + 1 + k \theta_3 \right) \chi_3 \\
+    \vdots & \\
+    n & : \ \left( fr_{ n - 1 } + 1 \right) \chi_{ n - 1 } = \left( fr_{ n - 1 } + 1 + k \theta_n \right) \chi_n \\
+\end{aligned} \]
 
-\[ DBO_t = DBO_5 \left( \frac{ 1 - e^{-kt} }{ 1 - e^{-5k} } \right) \]
+Y el sistema de ecuaciones queda como:
 
-El cociente de \( DBO_{ t k_1 } \) y \( DBO_{ t k_2 } \) es:
+\[ \boxed{ \begin{aligned}
+    1 & : \ \left( fr_1 + 1 + k \theta_1 \right) \chi_1 - fr_2 \chi_2 = \chi_I \\
+    i & : \ \left( -fr_{ i - 1 } - 1 \right) \chi_{ i - 1 } + \left( fr_{ i - 1 } + fr_i + 1 + \theta_i k \right) \chi_i = 0, \quad 2 < i < n \\
+    n & : \ \left( -fr_{ n - 1 } - 1 \right) \chi_{ n - 1 } + \left( fr_{ n - 1 } + 1 + \theta_n k \right) \chi_n = 0
+\end{aligned} } \]
 
-\[ \frac{DBO_{t \ k_1}}{DBO_{t \ k_2}} = \frac{ 1 - e^{ -k_1 t } }{ 1 - e^{ -5 k_1 } } \frac{ 1 - e^{ -5 k_2 t } }{ 1 - e^{ -k_2 t } } \]
+\section{Reactores en paralelo}
 
-y el error es:
+El balance de masa en cada reactor es:
 
-\[ e = 1 - \frac{DBO_{t \ k_1}}{DBO_{t \ k_2}} \]
+\[ \chi_1 = \frac{ \chi_I }{ 1 + k V_1 Q_{1}^{-1} } \]
 
-\[ \boxed{ e = 1 - \frac{ 1 - e^{ -k_1 t } }{ 1 - e^{ -5 k_1 } } \frac{ 1 - e^{ -5 k_2 t } }{ 1 - e^{ -k_2 t } } } \]
+\[ \chi_2 = \frac{ \chi_I }{ 1 + k V_2 Q_{2}^{-1} } \]
 
-que no depende del valor de la \( DBO_5 \).
+En el punto de mezclado también hacemos un balance de masa:
 
-si \( k_1 = 0.15 \text{día}^{-1} \) y \( k_2 = 0.2 \text{día}^{-1} \) en \( t = 10 \) días:
+\[ \chi_O = \frac{ \chi_1 Q_1 + \chi_2 Q_2 }{ Q_1 + Q_2 } \]
 
-\[ e = 1 - \frac{ 1 - e^{ -1.5 } }{ 1 - e^{ -0.75 } } \frac{ 1 - e^{ -1 } }{ 1 - e^{ -2 } } \]
+Unimos las tres ecuaciones:
 
-\[ e = -7.6 \% \]
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ Q_1 + Q_2 } \left( \frac{ Q_1 } { 1 + k V_1 Q_{1}^{-1} } + \frac{ Q_2 } { 1 + k V_2 Q_{2}^{-1} } \right) } \]
 
-En el caso de la \( DBO_\infty \), despejamos \( L_0 \) de la ecuación de la \( DBO_5 \):
+Cuando \( Q_1 = Q_2 \) y \( V_1 = V_2 \)
 
-\[ DBO_\infty = \frac{DBO_5}{ 1 - e^{-5k} } \]
+\[ \chi_1 = \chi_2 \]
 
-\[ e = 1 - \frac{DBO_{\infty \ k_1}}{DBO_{\infty \ k_2}} = 1 - \frac{ 1 - e^{-5 k_2} }{ 1 - e^{ -5 k_1 } } \]
+\[ \chi_O = \chi_1 \]
 
-y entonces el error sería
+Si tenemos \( n \) reactores:
 
-\[ e = 1 - \frac{ 1 - e^{-1} }{ 1 - e^{-0.75} } \]
-
-\[ \boxed{ e = -19.8 \% } \]
-
-que es un valor muy alto.
-
-Si la \( DBO_5 = 250 \sfrac{\text{mg}}{l} \):
-
-\[ DBO_{\infty \ k_1} = \frac{250}{ 1 - e^{-0.75} } \left[ \sfrac{\text{mg}}{l} \right] \]
-
-\[ DBO_{\infty \ k_2} = \frac{250}{ 1 - e^{-1} } = 295.5 \left[ \sfrac{\text{mg}}{l} \right] \]
-
-
-Si calculamos el error con estos datos llegarmos al mismo valor.
-
-Con esto se hace patente la importancia de compara la \( DBO_5 \) entre diferentes muestras solo cuando las constantes de degradación son iguales, o si en conjunto con la \( DBO_5 \) se da el valor de \( k \).
+\[ \boxed{ \chi_O = \frac{ \chi_I }{ \sum Q_i } \left( \displaystyle\sum \frac{ Q_i }{ 1 + k + V_i Q_{i}^{-1} } \right) } \]
 
 %\nocite{*}
 %\printbibliography

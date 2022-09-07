@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 20: \\ Ejercicio de conservación de energía}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+La mayoría de la electricidad del mundo se sigue generando en centrales térmica. En éstas, existe alguna fuente de calor, ya sea la combustión de un combustible fósil como el calor, la fusión nuclear del uranio, el calor geotérmico del subsuelo, o incluso el calor del sol. Esta fuente de energía hace que se evapora agua y que el vapor de agua pase por una turbina, haciendo girar el generador eléctrico.
+
+Las centrales térmicas, especialmente las carboeléctricas, son muy poco eficientes. La mayoría de la energía térmica no se convierte en electricidad, y el propio generador también produce calor. Éste debe ser disipado al ambiente, por lo que además de generar emisiones de gases de efecto invernadero, la generación eléctrica produce contaminación térmica.
+
+Una central caboeléctrica de \( 1 \) GW de potencia, un tamaño común y suficiente para una ciudad pequeña, tiene una eficiencia de \( 40 \% \). Junto a la central hay un río que lleva un gasto de \( 50 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \) que se utilizarán para disipiar el calor. Si se toman \( 20 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \) del río y suponemos que el \( 100 \% \) del calor de desecho de la central se transmite al sistema de enfriamiento, ¿cuál es la temperatura resultante del agua al salir del disipador si la temperatura del río es de \( 20 \degree \)?
+
+Eficiencia:
+
+\[ \eta = 40 \% \]
+
+Potencia de la planta:
+
+\[ P_p = 1 \left[ \text{GW} \right] = 1,000 \left[ \text{MW} \right] \]
+
+El calor de desecho es:
+
+\[ P_d = \left( 1 - \eta \right) P_p = \left( 1 - 0.4 \right) 1,000 \]
+
+\[ P_d = 600 \left[ \text{MW} \right] = 6 \times 10^5 \left[ \text{kW} \right]\]
+
+Calor específico del agua:
+
+\[ c_v = 4.2 \left[ \sfrac{\text{kJ}}{\text{kg} \cdot \text{K}} \right] \]
+
+Fórmula del calor sensible:
+
+\[ q = m c_v \Delta T \]
+
+Si consideramos un sistema abierto con un flujo de calor:
+
+\[ Q = \rho Q c_v \Delta T \]
+
+Para el agua del río tenemos los siguientes valores conocidos:
+
+\[ \rho = 1,000 \left[ \sfrac{\text{kg}}{\text{m}^3} \right] \]
+
+\[ T_0 = 20 \left[ \degree \text{C} \right] \]
+
+Despejamos:
+
+\[ \Delta T = \frac{P_d}{\rho Q c_v} \]
+
+\[ \Delta T = \frac{6 \times 10^5}{1,000 \cdot 20 \cdot 4.2} \]
+
+\[ \Delta T = 7.1 \left[ \degree \text{C} \right] \]
+
+\[ \boxed{ T_f = 27.1 \left[ \degree \text{C} \right] } \]
+
+Al descargar el agua, el gasto se mezcla nuevamente con el río. ¿Cuál sería la temperatura resultante del río?
+
+Gasto del disipador:
+
+\[ Q_2 = 20 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \]
+
+Temperatura del agua utilizada para disipar el calor:
+
+\[ T_2 = 27.1 \left[ \degree \text{C} \right] \]
+
+Gasto del río:
+
+\[ Q_1 = 50 - 20 = 30 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \]
+
+donde hay que tener en cuenta que el agua oara el disipador se tomó del río.
+
+Temperatura del río:
+
+\[ T_1 = 20 \left[ \degree \text{C} \right] \]
+
+Hacemos un balance de energía:
+
+\[ \left( Q_1 + Q_2 \right) T_f = Q_1 T_1 + Q_2 T_2 \]
+
+\[ T_f = \frac{Q_1 T_1 + Q_2 T_2}{Q_1 + Q_2} \]
+
+\[ T_f = \frac{30 \cdot 20 + 20 \cdot 27.1}{30 + 20} \]
+
+\[ \boxed{T_f = 22.84 \left[ \degree \text{C} \right] } \]
+
+¿Qué pasa si se toman de \( 10 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \) para el disipador? ¿Y si se toman, \( 15 \), \( 25 \), o \( 30 \)?
+
+Unimos las dos fórmulas obtenidas con anterioridad para \( T_f \) y \( \Delta T \):
+
+\[ T_f = \frac{Q_1 T_1 + Q_2 \left( T_1 + \Delta T \right)}{Q_1 + Q_2} \]
+
+\[ T_f = \frac{Q_1 T_1 + Q_2 \left( T_1 + \frac{P}{\rho Q_2 c_v} \right)}{Q_1 + Q_2} \]
+
+\[ T_f = \frac{T_1 \left( Q_1 + Q_2 \right) + \frac{P}{\rho c_v}}{Q_1 + Q_2} \]
+
+\[ \boxed{ T_f = T_1 + \frac{P}{\rho c_v Q_T} } \]
+
+donde
+
+\[ Q_T = Q_1 + Q_2 \]
+
+Llegamos a que la temperatura final no depende del gasto del disipador.
+
+Ahora se usa otro sistema de enfriamiento: se toma agua del río, se le transfiere el calor y se evapora toda el agua, transfiriendo calor a la atmósfera en una torre de enfriamiento. ¿Qué flujo se necesita tomar para disipar el calor?
+
+Calor latente:
+
+\[ L_v = 2.3 \left[ \sfrac{\text{kJ}}{\text{kg}} \right] \]
+
+\[ q = m L_v \]
+
+\[ P = Q \rho L_v \]
+
+Calor latente más sensible:
+
+\[ P = \rho Q \left[ L_v + c_v \left( 100 - T_0 \right) \right] \]
+
+\[ Q = \frac{P}{\rho} \frac{1}{L_v + c_v \left( 100 - T_0 \right)} \]
+
+\[ Q = \frac{6 \times 10^5}{1.000} \frac{1}{ 2.3 + 4.2 \left( 100 - 20 \right)} \]
+
+\[ \boxed{ Q = 1.77 \left[ \sfrac{\text{m}^3}{\text{s}} \right] } \]
+
+El gasto en el río después de la central ya no será de \( 50 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \) porque parte del agua se evaporó. Esto se llama un uso consuntivo del agua, ya que el agua usada no se devolvió a la cuenca. Esto contribuye al estrés hídrico y puede cambiar el régimen de flujo del río, afectando a la flora y la fauna. Si se disipa el calor en el río, el uso es no consuntivo, porque la cuenca sigue teniendo la misma cantidad de agua. Sin embargo, a mayor temperatura, menor oxígeno disuelto, favoreciendo la eutrofización.
+
+Las olas de calor pueden obligar a apagar centrales eléctricas porque ya no es posible disipar el calor generado, o porque el hacerlo rompería las normas ambientales y afectaría de gran manera al ecosistema. Esto coincide con un pico de demanda en el aire acondicionado, formando la receta un desastre. Otras fuentes de energía cuya generación de calor es mínima, como la eólica, la solar fotovoltaica o la hidroeléctrica, pueden estabilizar la red eléctrica en estos casos. De hecho, la temperatura del aire suele ser máxima uando hay una amplia disponibilidad de radiación solar, proveyendo aún más resiliencia.
+
+Veamos cual es la sensibilidad del disipador en el río con respecto a cambios en la temperatura del agua, ya que las olas de calor aumentan tanto la temperatura del aire como la del agua.
+
+Derivamos:
+
+\[ \frac{ \mathrm d T_f }{ \mathrm d T_1 } = 1 \]
+
+Por cada grado de temperatura extra en el río la temperatura final sube \( 1 \degree \)C.
+
+Si a partir de \( 24 \degree \) la fauna empieza a sufrir de estrés térmico y anoxia, entonce la temperatura máxima del riío a la que la central puede operar a potencia completa es de \( 21.1 \degree \)C. A \( 23 \degree \), ¿con qué potencia podría funcionar la central?
+
+\[ \Delta T = 1 \left[ \degree \text{C} \right] \]
+
+que es equivalente a despejar la potencia de la planta, si se toma en cuenta la eficiencia.
+
+\[ P_d = \rho Q_T c_v \Delta T = 1,000 \cdot 50 \cdot 4.2 \cdot 1 = 210 \left[ \text{MW} \right] \]
+
+\[ P_p = \frac{P_d}{1 - \eta} = \frac{210}{1 - 0.4} = 350 \left[ \text{MW} \right] \]
+
+La central tendrá que operar al \( 35\% \) de su capacidad. 
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}

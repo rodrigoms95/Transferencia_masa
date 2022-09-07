@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Clase 20: \\ Conservación de energía}
+\author{Rodrigo Muñoz}
+\date{2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Termodinámica}
+
+La primera ley de la termodinámica establece que la energía se conserva.
+
+\[ \boxed{ \Delta U = q - W } \]
+
+donde:
+
+\begin{itemize}
+    \item \( \mathbf{ \Delta U } = c \Delta T \): cambio de energía interna \( \left[ \text{J} \right] \).
+    
+    \item \( \mathbf{q} = c \Delta T \): calor transferido \( \left[ \text{J} \right] \).
+    
+    \item \( \mathbf{W} = \int P \mathrm d V \): trabajo realizado \( \left[ \text{J} \right] \).
+    
+    Si \( P = \text{cte.} \), entonces \( W = P \Delta V \).
+
+    \item \( \mathbf{V} \): volumen \( \left[ \text{m}^3 \right] \).
+    
+    \item \( \mathbf{c} \): calor específico \( \left[ \sfrac{\text{J}}{\text{kg} \cdot \text{K}} \right] \).
+    
+    \item \( \mathbf{m} \): masa \( \left[ \text{kg} \right] \).
+\end{itemize}
+
+El calor es energía térmica en tránsito. La energía térmica almacenada se llama energía interna, y la temperatura nos da una medida indirecta de ésta. La energía interna está relacionada con la cantidad de energía cinética asociada al movimiento aleatorio de las partículas, conocido como movimiento \textit{browniano}. Tanto la difusión como la conducción de calor dependen de este movimiento browniano, y por eso la Ley de Fick y la Ley de Fourier son muy similares.
+
+En un sistema abierto, donde hay un flujo de materia, nos interesa la rapidez con que se transfiere la energía. Podemos expresar la primera ley en función de la potencia, que es la energía transferida instantáneamente.
+
+\[ \boxed{ \frac{\mathrm d U}{\mathrm d t} = \dot q + \dot W } \]
+
+donde el punto arriba de la variable representa la variación con respecto al tiempo, dígase:
+
+\[ \dot q  = \frac{\mathrm d q}{\mathrm d t} \left[ \text{W} \right] \]
+
+\[ \dot W  = \frac{\mathrm d W}{\mathrm d t} \left[ \text{W} \right] \]
+
+Adicionalmente, una sustancia contiene energía potencial química, que en el caso de una reacción endo o exotérmica puede convertirse en energía térmico, o incluso en el caso de las explosiones, en energía cinética. En un fluido en movimiento, también es importante considerar la energía potencial gravitacional y la energía cinética. Para un estudio completo de la dinámica de los fluidos, es importante considerar todas las formas de energía, pero nos concentraremos en el calor, ya que la contaminación térmica es de especial interés en la ingeniería ambiental.
+
+En un volumen de control rígido (constante) no hay trabajo realizado, ya que \( \mathrm d V = 0 \), y hay que utilizar el calor específico a volumen constante \( c_v \). En este caso, el balance de energía en el volumen de control es:
+
+\[ \binom{\text{Cambio de energía}}{\text{interna dentro del sistema}} = \binom{\text{Fuentes de calor}}{\text{dentro del sistema}} + \binom{\text{Entradas de}}{\text{energía interna}} - \binom{\text{Salidas de}}{\text{energía interna}} \]
+
+o escrito de otra manera:
+
+\[ \left( \text{acumulación} \right) = \left( \text{fuentes} \right) + \left( \text{entradas} \right) - \left( \text{salidas} \right) \]
+
+Las fuentes son análogas a la tasa de creación de las especies químicas por reacción, y se refieren por ejemplo al calor generado por un foco debido a la conversión de energía eléctrica en luz y calor. Entonces, la ecuación de la conservación de calor es:
+
+\[ \boxed{ V \rho \frac{\mathrm d u}{\mathrm d t} = \dot q  + \sum J_I - \sum J_O } \]
+
+donde
+
+\begin{itemize}
+    \item \( \mathbf{ u } \): energía interna específica, o energía interna por unidad de masa \( \left[ \sfrac{\text{J}}{\text{kg}} \right] \).
+    
+    \item \( \frac{\mathrm d u }{\mathrm d t} = c_v \frac{\mathrm d T}{\mathrm d t} \)
+    
+    \item \( \mathbf{J} = Q \rho c_v T \): flujo de calor \( \left[ \sfrac{\text{J}}{\text{s}} \right] \).
+\end{itemize}
+
+En este caso estamos suponiendo un sistema bien mezclado, ya que la energía interna y las fuentes de calor son homogéneas espacialmente.
+
+En estado estacionario no hay ni acumulación de energía interna ni generación de calor, y la ecuación se simplifica a:
+
+\[ \sum J_I = \sum J_O \]
+
+Si la densidad y el calor específicos son homogéneos llegamos a un balance de temperaturas ponderado con los gastos:
+
+\[ \rho c_v \left( \sum Q_I T_I \right) = \rho c_v \left( \sum Q_O T_O \right) \]
+
+\[ \boxed{ \sum Q_I T_I = \sum Q_O T_O } \]
+
+\section{Calor latente y sensible}
+
+Si tenemos agua a cierta temperatur, por ejemplo a \( 20 \degree \)C, y suministramos calor, habrá un incremento de temperatura de acuerdo con la fórmula del calor sensible:
+
+\[ \boxed{ q = m c_v \Delta T } \]
+
+Cuando el agua llega a \( 100 \degree \)C, el calor adicional no cambiará la temperatura. Se tiene que suministrar el suficiente calor para que haya un cambio de estado y el agua se evapore.
+
+Fórmula del calor latente:
+
+\[ \boxed{ q = m L_v } \]
+
+donde:
+
+\begin{itemize}
+    \item \( \mathbf{ L_v } \): calor latente de vaporización \( \left[ \sfrac{\text{J}}{\text{kg}} \right] \).
+\end{itemize}
+
+Para el agua:
+
+\[ c_v = 4,184 \left[ \sfrac{\text{J}}{\text{kg} \cdot \text{K}} \right] \]
+
+\[ L_v = 2,265 \left[ \sfrac{\text{J}}{\text{kg}} \right] \]
+
+\subsection{Ejemplo 1}
+
+¿Cuánto calor se requiere para convertir \( 500 \) kg de agua a \( 15 \degree \)C en vapor?
+
+\bigskip \bigskip
+
+Datos: 
+
+\[ T_0 = 15 \left[ \degree \text{C} \right] \]
+
+\[ T_1 = 100 \left[ \degree \text{C} \right] \]
+
+\[ m = 500 \left[ \text{kg}\right] \]
+
+El calor total es latente y sensible.
+
+\[ Q_{TOT} = m \left[ c_v \left( T_1 - T_0 \right) + L_v \right] \]
+
+\[ Q_{TOT} = 500 \left[ 4,184 \left( 100 - 15 \right) + 2,265 \right] \]
+
+\[ \boxed{ Q_{TOT} = 179 \left[ text{MJ} \right] } \]
+
+\subsection{Ejemplo 2}
+
+Si tenemos un flujo de \( 0.5 \left[ \sfrac{\text{m}^3}{\text{s}} \right] \) de agua, ¿qué potencia se requiere para tener un flujo constante de vapor?
+
+Se tiene que suministrar \( Q_{TOT} \) cada segundo, por lo que:
+
+\[ \boxed{ P = 179 \left[ \text{MW} \right] = 179 \left[ \sfrac{MJ}{s} \right] } \]
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
